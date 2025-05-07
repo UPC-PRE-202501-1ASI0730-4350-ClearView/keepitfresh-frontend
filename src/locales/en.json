@@ -1,0 +1,11 @@
+{
+  "option": {
+    "home": "Home",
+    "inventory": "Inventory",
+    "sensors": "Sensors",
+    "statistics": "Statistics",
+    "report": "Report",
+    "subscription": "Subscription",
+    "profile": "Profile"
+  }
+}
