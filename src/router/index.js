@@ -1,20 +1,21 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 
-const inventoryComponent = () => import('../public/pages/inventory.component.vue')
+import Inventory from '../public/pages/inventory.component.vue';
+
 const routes = [
-    { path: '/inventory', name: 'inventory', component: inventoryComponent, meta:{title: 'Inventory'} },
+    {
+        path: '/',
+        component: Inventory,
+    },
+    {
+        path: '/sensors',
+        component: () => import('../public/pages/sensors.component.vue'),
+    }
 ];
 
 const router = createRouter({
-    history: createWebHistory(import.meta.BASE_URL),
-    routes: routes,
-});
-
-router.beforeEach((to, from, next) => {
-    console.log(`Navigating from ${from.name} to ${to.name}`);
-    let baseTitle = 'ACME Learning Center';
-    document.title = `${baseTitle} | ${to.meta['title']}`;
-    next();
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;

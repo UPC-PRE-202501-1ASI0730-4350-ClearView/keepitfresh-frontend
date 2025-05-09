@@ -4,8 +4,12 @@ export default {
 }
 </script>
 
-<template>
 
+<template>
+  <div class="w-full">
+    <h1>Sensors</h1>
+    <p>prueba router</p>
+  </div>
 </template>
 
 <style scoped>
