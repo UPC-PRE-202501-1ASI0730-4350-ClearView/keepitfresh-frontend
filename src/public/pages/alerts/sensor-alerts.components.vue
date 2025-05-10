@@ -1,12 +1,12 @@
 <script>
 export default {
-  name: "alerts"
+  name: "sensor-alerts"
 }
 </script>
 
 <template>
   <div class="w-full">
-    <h1>Alerts</h1>
+    <h1>Sensor Alerts</h1>
     <p>prueba router</p>
   </div>
 </template>
