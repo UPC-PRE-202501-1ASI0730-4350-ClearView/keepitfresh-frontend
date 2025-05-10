@@ -1,12 +1,12 @@
 <script>
 export default {
-  name: "reports"
+  name: "alerts"
 }
 </script>
 
 <template>
   <div class="w-full">
-    <h1>Reports</h1>
+    <h1>Alerts</h1>
     <p>prueba router</p>
   </div>
 </template>

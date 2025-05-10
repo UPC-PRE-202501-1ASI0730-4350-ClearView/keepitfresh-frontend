@@ -13,18 +13,21 @@ import {
     ConfirmDialog,
     DataTable,
     Dialog, DialogService, Drawer,
-    FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, Rating, Row,
+    FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
     Select,
     SelectButton, Tag, Textarea, Toast, ToastService, Toolbar
 } from "primevue";
 import i18n from "../i18n.js";
+import router from "./router"
 
 createApp(App)
+    .use (router)
     .use (i18n)
     .use(PrimeVue, { theme: { preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('pv-panel-menu', PanelMenu)
     .component('pv-button', Button)
     .component('pv-card', Card)
     .component('pv-column', Column)
