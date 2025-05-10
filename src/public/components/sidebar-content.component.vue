@@ -137,8 +137,9 @@ export default {
 }
 
 .sign-out-container{
-  position: absolute;
+  position: fixed;
   bottom: 20px;
+  left: 80px;
 }
 
 /* Estilos para desktop */
