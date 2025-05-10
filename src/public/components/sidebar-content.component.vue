@@ -40,7 +40,10 @@ export default {
         { label: 'Inventory', icon: 'pi pi-box', command: () => router.push('/inventory'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Sensors', icon: 'pi pi-wifi', command: () => router.push('/sensors'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Statistics', icon: 'pi pi-chart-bar', command: () => router.push('/statistics'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
-        { label: 'Alerts', icon: 'pi pi-bell', command: () => router.push('/alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
+        { label: 'Alerts', icon: 'pi pi-bell', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}, items: [
+            { label: 'Sensor Alerts', icon: 'pi pi-wifi', command: () => router.push('/alerts/sensor-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
+            { label: 'Inventory Alerts', icon: 'pi pi-box', command: () => router.push('/alerts/inventory-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
+          ] },
         { label: 'Reports', icon: 'pi pi-file', command: () => router.push('/reports'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Subscriptions', icon: 'pi pi-money-bill', command: () => router.push('/subscriptions'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Profile', icon: 'pi pi-user', command: () => router.push('/profile'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
@@ -77,6 +80,7 @@ export default {
       <div class="sidebar-container">
         <PvPanelMenu
             :model="menuItems"
+            :multiple="true"
             class="w-full"
         />
       </div>
