@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import {Button as PvButton, Message as PvMessage} from "primevue";
+import { ref, onMounted } from 'vue';
+import { Button as PvButton, Message as PvMessage } from "primevue";
 
 // Estado para controlar qué notificaciones mostrar
 const activeNotifications = ref({
@@ -10,15 +10,20 @@ const activeNotifications = ref({
   info: false
 });
 
-// Mensajes de ejemplo más descriptivos
-const notificationMessages = {
-  error: 'Sensor A: Temperatura CRÍTICA (45°C) - ¡Requiere acción inmediata!',
-  warn: 'Sensor B: Batería baja (15%) - Reemplazar pronto',
-  success: 'Sensor C: Reconexión exitosa - Operando normalmente',
-  info: 'Sensor D: Actualización de firmware disponible',
+// Notificaciones cargadas desde la API
+const notifications = ref([]);
+
+// Función para obtener notificaciones desde la API
+const fetchNotifications = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/notifications');
+    notifications.value = await response.json();
+  } catch (error) {
+    console.error('Error fetching notifications:', error);
+  }
 };
 
-// Función para mostrar/ocultar notificaciones
+// Función para mostrar/ocultar notificaciones por tipo
 const toggleNotification = (type) => {
   activeNotifications.value[type] = !activeNotifications.value[type];
 };
@@ -29,12 +34,22 @@ const showAllNotifications = () => {
     activeNotifications.value[type] = true;
   }
 };
+
+// Filtrar notificaciones por tipo
+const getNotificationsByType = (type) => {
+  return notifications.value.filter(notification => notification.type === type);
+};
+
+// Cargar notificaciones al montar el componente
+onMounted(() => {
+  fetchNotifications();
+});
 </script>
 
 <template>
   <div class="alerts-container">
     <div class="content">
-      <h2>Prueba de Notificaciones</h2>
+      <h2>Alertas de Sensores</h2>
 
       <!-- Panel de control para pruebas -->
       <div class="test-controls">
@@ -55,45 +70,61 @@ const showAllNotifications = () => {
 
       <!-- Contenedor de notificaciones -->
       <div class="message-container">
-        <pv-message
-            v-if="activeNotifications.error"
-            closable
-            severity="error"
-            icon="pi pi-exclamation-circle"
-            @close="activeNotifications.error = false"
-        >
-          {{ notificationMessages.error }}
-        </pv-message>
+        <!-- Notificaciones de error -->
+        <template v-if="activeNotifications.error">
+          <pv-message
+              v-for="notification in getNotificationsByType('error')"
+              :key="notification.id"
+              closable
+              severity="error"
+              icon="pi pi-exclamation-circle"
+              @close="activeNotifications.error = false"
+          >
+            {{ notification.message }}
+          </pv-message>
+        </template>
 
-        <pv-message
-            v-if="activeNotifications.warn"
-            closable
-            severity="warn"
-            icon="pi pi-exclamation-triangle"
-            @close="activeNotifications.warn = false"
-        >
-          {{ notificationMessages.warn }}
-        </pv-message>
+        <!-- Notificaciones de advertencia -->
+        <template v-if="activeNotifications.warn">
+          <pv-message
+              v-for="notification in getNotificationsByType('warn')"
+              :key="notification.id"
+              closable
+              severity="warn"
+              icon="pi pi-exclamation-triangle"
+              @close="activeNotifications.warn = false"
+          >
+            {{ notification.message }}
+          </pv-message>
+        </template>
 
-        <pv-message
-            v-if="activeNotifications.success"
-            closable
-            severity="success"
-            icon="pi pi-check-circle"
-            @close="activeNotifications.success = false"
-        >
-          {{ notificationMessages.success }}
-        </pv-message>
+        <!-- Notificaciones de éxito -->
+        <template v-if="activeNotifications.success">
+          <pv-message
+              v-for="notification in getNotificationsByType('success')"
+              :key="notification.id"
+              closable
+              severity="success"
+              icon="pi pi-check-circle"
+              @close="activeNotifications.success = false"
+          >
+            {{ notification.message }}
+          </pv-message>
+        </template>
 
-        <pv-message
-            v-if="activeNotifications.info"
-            closable
-            severity="info"
-            icon="pi pi-info-circle"
-            @close="activeNotifications.info = false"
-        >
-          {{ notificationMessages.info }}
-        </pv-message>
+        <!-- Notificaciones informativas -->
+        <template v-if="activeNotifications.info">
+          <pv-message
+              v-for="notification in getNotificationsByType('info')"
+              :key="notification.id"
+              closable
+              severity="info"
+              icon="pi pi-info-circle"
+              @close="activeNotifications.info = false"
+          >
+            {{ notification.message }}
+          </pv-message>
+        </template>
       </div>
     </div>
   </div>
@@ -124,7 +155,7 @@ const showAllNotifications = () => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-height: 300px; /* Espacio reservado para ver las notificaciones */
+  min-height: 300px;
 }
 
 :deep(.p-message) {
