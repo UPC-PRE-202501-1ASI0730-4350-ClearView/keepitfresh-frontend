@@ -1,3 +1,64 @@
 {
-
+  "notifications": [
+    {
+      "id": 1,
+      "type": "error",
+      "message": "Sensor A: Temperatura CRÍTICA (45°C) - ¡Requiere acción inmediata!"
+    },
+    {
+      "id": 2,
+      "type": "warn",
+      "message": "Sensor B: Batería baja (15%) - Reemplazar pronto"
+    },
+    {
+      "id": 3,
+      "type": "success",
+      "message": "Sensor C: Reconexión exitosa - Operando normalmente"
+    },
+    {
+      "id": 4,
+      "type": "info",
+      "message": "Sensor D: Actualización de firmware disponible"
+    },
+    {
+      "id": 5,
+      "type": "error",
+      "message": "Sensor E: Cortocircuito detectado en el módulo de potencia"
+    },
+    {
+      "id": 6,
+      "type": "warn",
+      "message": "Sensor F: Nivel de humedad cercano al umbral (75%)"
+    },
+    {
+      "id": 7,
+      "type": "success",
+      "message": "Sensor G: Datos sincronizados correctamente con el servidor central"
+    },
+    {
+      "id": 8,
+      "type": "info",
+      "message": "Sensor H: Mantenimiento programado para el 15 de mayo"
+    },
+    {
+      "id": 9,
+      "type": "error",
+      "message": "Sensor I: Desconexión inesperada - Sin datos recibidos en 10 minutos"
+    },
+    {
+      "id": 10,
+      "type": "warn",
+      "message": "Sensor J: Vibraciones anómalas detectadas - Revisar soporte físico"
+    },
+    {
+      "id": 11,
+      "type": "success",
+      "message": "Sensor K: Calibración completada exitosamente"
+    },
+    {
+      "id": 12,
+      "type": "info",
+      "message": "Sensor L: Registro de evento ambiental archivado"
+    }
+  ]
 }
