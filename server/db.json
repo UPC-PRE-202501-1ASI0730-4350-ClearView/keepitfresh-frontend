@@ -31,6 +31,32 @@
       "wait_time": 25
     }
   ],
+  "inventory-notification": [
+    {
+      "id": 1,
+      "title": "Tomatoes expiration date",
+      "description": "Tomatoes are about to expire in 2 days",
+      "date": "2023-10-15"
+    },
+    {
+      "id": 2,
+      "title": "Potatoes expiration date",
+      "description": "Potatoes are about to expire in 5 days",
+      "date": "2023-10-20"
+    },
+    {
+      "id": 3,
+      "title": "Onions stock ",
+      "description": "Onions are running low, only 10 units left",
+      "date": "2023-10-22"
+    },
+    {
+      "id": 4,
+      "title": "Carrots expiration date",
+      "description": "Carrots are about to expire in 10 days",
+      "date": "2023-10-25"
+    }
+  ],
   "notifications": [
     {
       "id": 1,
