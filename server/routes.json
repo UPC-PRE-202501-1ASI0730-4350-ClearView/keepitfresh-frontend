@@ -1,5 +1,4 @@
 {
-  "/api/v1/notifications": "/notifications",
-  "/api/v1/*": "/$1"
+  "/api/v1/notifications": "/notifications"
 }
 
