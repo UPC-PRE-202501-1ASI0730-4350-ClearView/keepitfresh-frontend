@@ -31,7 +31,7 @@
       "wait_time": 25
     }
   ],
-  "inventory-notification": [
+  "inventory-notifications": [
     {
       "id": 1,
       "title": "Tomatoes expiration date",

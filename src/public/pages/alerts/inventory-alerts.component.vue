@@ -6,7 +6,7 @@ const notifications = ref([]);
 
 const fetchNotifications = async () => {
   try {
-    const response = await fetch('http://localhost:3000/inventory-notification');
+    const response = await fetch('http://localhost:3000/inventory-notifications');
     notifications.value = await response.json();
   } catch (error) {
     console.error('Error fetching notifications:', error);
