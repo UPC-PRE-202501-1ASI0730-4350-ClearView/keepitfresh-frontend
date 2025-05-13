@@ -20,8 +20,12 @@ const routes = [
         component: () => import('../public/pages/statistics.component.vue'),
     },
     {
-      path: '/alerts',
-        component: () => import('../public/pages/alerts.components.vue')
+      path: '/alerts/sensor-alerts',
+        component: () => import('../public/pages/alerts/sensor-alerts.components.vue')
+    },
+    {
+      path: '/alerts/inventory-alerts',
+      component: () => import('../public/pages/alerts/inventory-alerts.component.vue')
     },
     {
         path: '/reports',
