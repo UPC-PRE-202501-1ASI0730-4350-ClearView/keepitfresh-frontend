@@ -5,12 +5,7 @@ import { Button as PvButton, Message as PvMessage } from "primevue";
 // Estado para controlar qué notificaciones mostrar
 const activeNotifications = ref({
   stock: false,
-  expiration: false,
-  error: false,
-  warn: false,
-  success: false,
-  info: false
-
+  expiration: false
 });
 
 // Notificaciones cargadas desde la API
@@ -57,7 +52,7 @@ onMounted(() => {
       <!-- Panel de control para pruebas -->
       <div class="test-controls">
         <pv-button
-            v-for="type in ['error', 'warn', 'success', 'info']"
+            v-for="type in ['stock', 'expiration']"
             :key="type"
             :label="type.toUpperCase()"
             @click="toggleNotification(type)"
@@ -73,38 +68,11 @@ onMounted(() => {
 
       <!-- Contenedor de notificaciones -->
       <div class="message-container">
-        <!-- Notificaciones de error -->
-        <template v-if="activeNotifications.error">
-          <pv-message
-              v-for="notification in getNotificationsByType('error')"
-              :key="notification.id"
-              closable
-              severity="error"
-              icon="pi pi-exclamation-circle"
-              @close="activeNotifications.error = false"
-          >
-            {{ notification.message }}
-          </pv-message>
-        </template>
 
-        <!-- Notificaciones de advertencia -->
-        <template v-if="activeNotifications.warn">
-          <pv-message
-              v-for="notification in getNotificationsByType('warn')"
-              :key="notification.id"
-              closable
-              severity="warn"
-              icon="pi pi-exclamation-triangle"
-              @close="activeNotifications.warn = false"
-          >
-            {{ notification.message }}
-          </pv-message>
-        </template>
-
-        <!-- Notificaciones de éxito -->
+        <!-- Notificaciones de stock -->
         <template v-if="activeNotifications.success">
           <pv-message
-              v-for="notification in getNotificationsByType('success')"
+              v-for="notification in getNotificationsByType('stock')"
               :key="notification.id"
               closable
               severity="success"
@@ -115,10 +83,10 @@ onMounted(() => {
           </pv-message>
         </template>
 
-        <!-- Notificaciones informativas -->
+        <!-- Notificaciones expiracion -->
         <template v-if="activeNotifications.info">
           <pv-message
-              v-for="notification in getNotificationsByType('info')"
+              v-for="notification in getNotificationsByType('expiration')"
               :key="notification.id"
               closable
               severity="info"
@@ -174,22 +142,12 @@ onMounted(() => {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-:deep(.p-button.p-button-error){
-  background-color: #CA4747 !important;
-  color: white !important;
-  border: none !important;
-}
-:deep(.p-button.p-button-success){
+:deep(.p-button.p-button-stock){
   background-color: #62B965 !important;
   color: white !important;
   border: none !important;
 }
-:deep(.p-button.p-button-warn){
-  background-color: #E4C072 !important;
-  color: white !important;
-  border: none !important;
-}
-:deep(.p-button.p-button-info){
+:deep(.p-button.p-button-expiration){
   background-color: #2F82DB !important;
   color: white !important;
   border: none !important;
