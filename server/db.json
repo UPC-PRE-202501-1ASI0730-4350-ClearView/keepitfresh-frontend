@@ -1,3 +1,84 @@
 {
-
+  "notifications": [
+    {
+      "id": 1,
+      "type": "error",
+      "message": "Sensor A: CRITICAL temperature (45°C) - Immediate action required!"
+    },
+    {
+      "id": 2,
+      "type": "warn",
+      "message": "Sensor B: Low battery (15%) - Replace soon"
+    },
+    {
+      "id": 3,
+      "type": "success",
+      "message": "Sensor C: Successful reconnection - Operating normally"
+    },
+    {
+      "id": 4,
+      "type": "info",
+      "message": "Sensor D: Firmware update available"
+    },
+    {
+      "id": 5,
+      "type": "error",
+      "message": "Sensor E: Short circuit detected in the power module"
+    },
+    {
+      "id": 6,
+      "type": "warn",
+      "message": "Sensor F: Humidity level near threshold (75%)"
+    },
+    {
+      "id": 7,
+      "type": "success",
+      "message": "Sensor G: Data successfully synchronized with the central server"
+    },
+    {
+      "id": 8,
+      "type": "info",
+      "message": "Sensor H: Maintenance scheduled for May 15"
+    },
+    {
+      "id": 9,
+      "type": "error",
+      "message": "Sensor I: Unexpected disconnection - No data received in 10 minutes"
+    },
+    {
+      "id": 10,
+      "type": "warn",
+      "message": "Sensor J: Abnormal vibrations detected - Check physical support"
+    },
+    {
+      "id": 11,
+      "type": "success",
+      "message": "Sensor K: Calibration successfully completed"
+    },
+    {
+      "id": 12,
+      "type": "info",
+      "message": "Sensor L: Environmental event log archived"
+    },
+    {
+      "id": 13,
+      "type": "expiration",
+      "message" : "Steak - 2 days left before expiration"
+    },
+    {
+      "id": 14,
+      "type": "expiration",
+      "message" : "Fish - 1 day left before expiration"
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "message" : "Steak - 1kg left in stock"
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "message" : "Fish - 2kg left in stock"
+    }
+  ]
 }
