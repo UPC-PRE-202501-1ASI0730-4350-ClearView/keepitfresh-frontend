@@ -72,12 +72,12 @@
     },
     {
       "id": 15,
-      "type": "Stock",
+      "type": "stock",
       "message" : "Steak - 1kg left in stock"
     },
     {
       "id": 16,
-      "type": "Stock",
+      "type": "stock",
       "message" : "Fish - 2kg left in stock"
     }
   ]
