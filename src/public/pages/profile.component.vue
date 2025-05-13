@@ -1,120 +1,89 @@
 <template>
   <div class="login-container">
-    <div class="login-box">
-      <h2>Login</h2>
-      <form @submit.prevent="handleLogin">
-        <div class="input-group">
-          <input type="text" v-model="username" placeholder="Username or Email" required />
-          <i class="icon">👤</i>
-        </div>
+    <h2>Login</h2>
 
-        <div class="input-group">
-          <input type="password" v-model="password" placeholder="Password" required />
-          <i class="icon">🔒</i>
-        </div>
-
-        <div class="options">
-          <label>
-            <input type="checkbox" v-model="rememberMe" />
-            Remember me
-          </label>
-          <a href="#" class="forgot-password">Forgot your password?</a>
-        </div>
-
-        <button type="submit" class="sign-up-btn">Sign Up</button>
-
-        <p class="register-link">
-          Don't have an account? <a href="#">Register</a>
-        </p>
-      </form>
+    <div class="form-group">
+      <input type="text" placeholder="Username or Email" />
     </div>
+
+    <div class="form-group">
+      <input type="password" placeholder="Password" />
+    </div>
+
+    <div class="form-options">
+      <label><input type="checkbox" /> Remember me</label>
+      <a href="#">Forgot your password?</a>
+    </div>
+
+    <button class="signup-btn" @click="goToProfileDetails">Sign Up</button>
+
+    <p class="register-link">
+      Don't have an account?
+      <a @click.prevent="goToProfileDetails">Register</a>
+    </p>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const username = ref('')
-const password = ref('')
-const rememberMe = ref(false)
+const router = useRouter()
 
-const handleLogin = () => {
-  console.log('Username:', username.value)
-  console.log('Password:', password.value)
-  console.log('Remember Me:', rememberMe.value)
+const goToProfileDetails = () => {
+  router.push('/profile-details')
 }
 </script>
 
 <style scoped>
 .login-container {
-  background: url('src/assets/almacen.png') no-repeat center center;
-  background-size: cover;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.login-box {
+  max-width: 350px;
+  margin: auto;
+  padding: 2rem;
   background: rgba(0, 0, 0, 0.6);
-  padding: 40px;
-  border-radius: 12px;
-  width: 320px;
-  color: #fff;
+  border-radius: 10px;
+  color: white;
   text-align: center;
 }
 
-h2 {
-  margin-bottom: 20px;
+.form-group {
+  margin-bottom: 1rem;
 }
 
-.input-group {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.input-group input {
+input[type="text"],
+input[type="password"] {
   width: 100%;
-  padding: 10px 35px 10px 10px;
-  border-radius: 20px;
+  padding: 0.75rem;
+  border-radius: 25px;
   border: none;
   outline: none;
 }
 
-.input-group .icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.options {
+.form-options {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  margin-bottom: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: white;
 }
 
-.options a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-.sign-up-btn {
+.signup-btn {
   width: 100%;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
+  padding: 0.75rem;
   background: white;
-  color: black;
+  border: none;
+  border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 15px;
+}
+
+.register-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
 .register-link a {
   color: white;
-  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
