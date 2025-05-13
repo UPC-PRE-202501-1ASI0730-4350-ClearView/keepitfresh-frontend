@@ -5,6 +5,7 @@ import {PrimeVue} from '@primevue/core';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Material from '@primeuix/themes/material';
+import { Form, FormField } from '@primevue/forms';
 import {
     Button,
     Card,
@@ -12,7 +13,7 @@ import {
     Column, ConfirmationService,
     ConfirmDialog,
     DataTable,
-    Dialog, DialogService, Drawer,
+    Dialog, DialogService, Drawer, Message,
     FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
     Select,
     SelectButton, Tag, Textarea, Toast, ToastService, Toolbar
@@ -51,4 +52,7 @@ createApp(App)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
+    .component('Message', Message)
+    .component('FormField', FormField)
+    .component('Form', Form)
     .mount('#app')
