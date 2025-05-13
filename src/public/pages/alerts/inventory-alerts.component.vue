@@ -70,7 +70,7 @@ onMounted(() => {
       <div class="message-container">
 
         <!-- Notificaciones de stock -->
-        <template v-if="activeNotifications.success">
+        <template v-if="activeNotifications.stock">
           <pv-message
               v-for="notification in getNotificationsByType('stock')"
               :key="notification.id"
@@ -84,7 +84,7 @@ onMounted(() => {
         </template>
 
         <!-- Notificaciones expiracion -->
-        <template v-if="activeNotifications.info">
+        <template v-if="activeNotifications.expiration">
           <pv-message
               v-for="notification in getNotificationsByType('expiration')"
               :key="notification.id"
