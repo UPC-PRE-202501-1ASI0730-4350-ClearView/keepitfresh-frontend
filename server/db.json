@@ -59,6 +59,26 @@
       "id": 12,
       "type": "info",
       "message": "Sensor L: Environmental event log archived"
+    },
+    {
+      "id": 13,
+      "type": "expiration",
+      "message" : "Steak - 2 days left before expiration"
+    },
+    {
+      "id": 14,
+      "type": "expiration",
+      "message" : "Fish - 1 day left before expiration"
+    },
+    {
+      "id": 15,
+      "type": "Stock",
+      "message" : "Steak - 1kg left in stock"
+    },
+    {
+      "id": 16,
+      "type": "Stock",
+      "message" : "Fish - 2kg left in stock"
     }
   ]
 }
