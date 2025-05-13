@@ -4,10 +4,13 @@ import { Button as PvButton, Message as PvMessage } from "primevue";
 
 // Estado para controlar qué notificaciones mostrar
 const activeNotifications = ref({
+  stock: false,
+  expiration: false,
   error: false,
   warn: false,
   success: false,
   info: false
+
 });
 
 // Notificaciones cargadas desde la API

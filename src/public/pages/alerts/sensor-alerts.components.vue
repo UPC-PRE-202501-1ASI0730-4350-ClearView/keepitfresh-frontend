@@ -7,7 +7,9 @@ const activeNotifications = ref({
   error: false,
   warn: false,
   success: false,
-  info: false
+  info: false,
+  stock: false,
+  expiration: false
 });
 
 // Notificaciones cargadas desde la API
