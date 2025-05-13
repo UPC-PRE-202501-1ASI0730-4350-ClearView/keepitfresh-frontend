@@ -89,8 +89,8 @@ onMounted(() => {
               v-for="notification in getNotificationsByType('expiration')"
               :key="notification.id"
               closable
-              severity="info"
-              icon="pi pi-info-circle"
+              severity="warn"
+              icon="pi pi-exclamation-triangle"
               @close="activeNotifications.info = false"
           >
             {{ notification.message }}
@@ -148,7 +148,7 @@ onMounted(() => {
   border: none !important;
 }
 :deep(.p-button.p-button-expiration){
-  background-color: #2F82DB !important;
+  background-color: #E4C072 !important;
   color: white !important;
   border: none !important;
 }
