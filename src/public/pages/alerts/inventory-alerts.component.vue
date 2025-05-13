@@ -49,7 +49,7 @@ onMounted(() => {
 <template>
   <div class="alerts-container">
     <div class="content">
-      <h2>Alertas de Sensores</h2>
+      <h2>Inventory Alerts</h2>
 
       <!-- Panel de control para pruebas -->
       <div class="test-controls">
@@ -62,7 +62,7 @@ onMounted(() => {
             class="test-button"
         />
         <pv-button
-            label="MOSTRAR TODAS"
+            label="SHOW ALL"
             @click="showAllNotifications"
             severity="secondary"
         />
