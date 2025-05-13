@@ -3,62 +3,62 @@
     {
       "id": 1,
       "type": "error",
-      "message": "Sensor A: Temperatura CRÍTICA (45°C) - ¡Requiere acción inmediata!"
+      "message": "Sensor A: CRITICAL temperature (45°C) - Immediate action required!"
     },
     {
       "id": 2,
       "type": "warn",
-      "message": "Sensor B: Batería baja (15%) - Reemplazar pronto"
+      "message": "Sensor B: Low battery (15%) - Replace soon"
     },
     {
       "id": 3,
       "type": "success",
-      "message": "Sensor C: Reconexión exitosa - Operando normalmente"
+      "message": "Sensor C: Successful reconnection - Operating normally"
     },
     {
       "id": 4,
       "type": "info",
-      "message": "Sensor D: Actualización de firmware disponible"
+      "message": "Sensor D: Firmware update available"
     },
     {
       "id": 5,
       "type": "error",
-      "message": "Sensor E: Cortocircuito detectado en el módulo de potencia"
+      "message": "Sensor E: Short circuit detected in the power module"
     },
     {
       "id": 6,
       "type": "warn",
-      "message": "Sensor F: Nivel de humedad cercano al umbral (75%)"
+      "message": "Sensor F: Humidity level near threshold (75%)"
     },
     {
       "id": 7,
       "type": "success",
-      "message": "Sensor G: Datos sincronizados correctamente con el servidor central"
+      "message": "Sensor G: Data successfully synchronized with the central server"
     },
     {
       "id": 8,
       "type": "info",
-      "message": "Sensor H: Mantenimiento programado para el 15 de mayo"
+      "message": "Sensor H: Maintenance scheduled for May 15"
     },
     {
       "id": 9,
       "type": "error",
-      "message": "Sensor I: Desconexión inesperada - Sin datos recibidos en 10 minutos"
+      "message": "Sensor I: Unexpected disconnection - No data received in 10 minutes"
     },
     {
       "id": 10,
       "type": "warn",
-      "message": "Sensor J: Vibraciones anómalas detectadas - Revisar soporte físico"
+      "message": "Sensor J: Abnormal vibrations detected - Check physical support"
     },
     {
       "id": 11,
       "type": "success",
-      "message": "Sensor K: Calibración completada exitosamente"
+      "message": "Sensor K: Calibration successfully completed"
     },
     {
       "id": 12,
       "type": "info",
-      "message": "Sensor L: Registro de evento ambiental archivado"
+      "message": "Sensor L: Environmental event log archived"
     }
   ]
 }
