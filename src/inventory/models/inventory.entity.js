@@ -1,6 +1,6 @@
-class inventory {
+class Inventory {
     constructor({
-                    id = '',
+                    id = 0,
                     name = '',
                     category = '',
                     quantity = 0,
@@ -19,3 +19,5 @@ class inventory {
         this.status = status;
     }
 }
+
+export default Inventory;
