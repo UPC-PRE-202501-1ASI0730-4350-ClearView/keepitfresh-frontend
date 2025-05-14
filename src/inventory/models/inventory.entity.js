@@ -1,4 +1,4 @@
-export class inventory {
+class inventory {
     constructor({
                     id = '',
                     name = '',
