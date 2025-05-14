@@ -1,6 +1,9 @@
 <script>
+import InventoryView from "../../inventory/pages/inventory-view.component.vue";
+
 export default {
-  name: "inventory"
+  name: "inventory",
+  components: {InventoryView}
 }
 </script>
 
@@ -8,6 +11,7 @@ export default {
   <div class="w-full">
     <h1>Inventory</h1>
     <p>prueba router</p>
+    <InventoryView/>
   </div>
 </template>
 
