@@ -14,7 +14,7 @@ const notifications = ref([]);
 // Función para obtener notificaciones desde la API
 const fetchNotifications = async () => {
   try {
-    const response = await fetch('http://localhost:3000/notifications');
+    const response = await fetch('https://keepitfreshweb.free.beeceptor.com/api/v1/notifications');
     notifications.value = await response.json();
   } catch (error) {
     console.error('Error fetching notifications:', error);
