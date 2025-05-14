@@ -1,4 +1,4 @@
 {
-  "/api/v1/notifications": "/notifications"
+  "/api/v1/notifications": "/notifications",
+  "/api/v1/inventory": "/inventory"
 }
-
