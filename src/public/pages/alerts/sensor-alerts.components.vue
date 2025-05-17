@@ -18,7 +18,7 @@ const notifications = ref([]);
 // Función para obtener notificaciones desde la API
 const fetchNotifications = async () => {
   try {
-    const response = await fetch('https://keepitfreshweb.free.beeceptor.com/api/v1/notifications');
+    const response = await fetch('http://localhost:3000/notifications');
     notifications.value = await response.json();
   } catch (error) {
     console.error('Error fetching notifications:', error);
@@ -49,6 +49,15 @@ onMounted(() => {
 </script>
 
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        rounded
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+    />
+  </router-link>
   <div class="alerts-container">
     <div class="content">
       <h2>Sensor Alerts</h2>
@@ -136,7 +145,7 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 .test-controls {
-  margin-top: 5%;
+  margin-top: 10px;
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
@@ -146,7 +155,6 @@ onMounted(() => {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 35px;
   font-weight: 700;
-  color: black;
   margin: 0;
 }
 .test-button {

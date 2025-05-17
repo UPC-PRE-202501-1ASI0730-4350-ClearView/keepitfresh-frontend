@@ -63,66 +63,23 @@
     {
       "id": 13,
       "type": "expiration",
-      "message" : "Steak - 2 days left before expiration"
+      "message": "Steak - 2 days left before expiration"
     },
     {
       "id": 14,
       "type": "expiration",
-      "message" : "Fish - 1 day left before expiration"
+      "message": "Fish - 1 day left before expiration"
     },
     {
       "id": 15,
       "type": "stock",
-      "message" : "Steak - 1kg left in stock"
+      "message": "Steak - 1kg left in stock"
     },
     {
       "id": 16,
       "type": "stock",
-      "message" : "Fish - 2kg left in stock"
+      "message": "Fish - 2kg left in stock"
     }
   ],
-  "inventory": [
-    {
-      "id": 1,
-      "name": "Pechuga de Pollo",
-      "category": "Carnes",
-      "quantity": 10,
-      "unit": "kg",
-      "entryDate": "2025-05-10",
-      "expirationDate": "2025-05-17",
-      "status": "Vigente"
-    },
-    {
-      "id": 2,
-      "name": "Lechuga Romana",
-      "category": "Verduras",
-      "quantity": 20,
-      "unit": "unidades",
-      "entryDate": "2025-05-12",
-      "expirationDate": "2025-05-16",
-      "status": "Próximo a vencer"
-    },
-    {
-      "id": 3,
-      "name": "Queso Mozzarella",
-      "category": "Lácteos",
-      "quantity": 25,
-      "unit": "kg",
-      "entryDate": "2025-05-09",
-      "expirationDate": "2025-06-09",
-      "status": "Vigente"
-    },
-    {
-      "id": 4,
-      "name": "Arroz",
-      "category": "Granos",
-      "quantity": 15,
-      "unit": "kg",
-      "entryDate": "2025-05-05",
-      "expirationDate": "2026-05-05",
-      "status": "Vigente"
-    }
-  ]
-}
-
+  "products": []
 }

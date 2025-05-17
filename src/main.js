@@ -16,28 +16,36 @@ import {
     Dialog, DialogService, Drawer, Message,
     FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
     Select,
-    SelectButton, Tag, Textarea, Toast, ToastService, Toolbar
+    SelectButton, Tag, Textarea, Toast, ToastService, Toolbar, DatePicker, TabView, TabPanel, Dropdown,
 } from "primevue";
 import i18n from "../i18n.js";
 import router from "./router"
 
 createApp(App)
-    .use (router)
-    .use (i18n)
-    .use(PrimeVue, { theme: { preset: Material}, ripple: true})
+    .use(router)
+    .use(i18n)
+    .use(PrimeVue, {theme: {preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('pv-datatable', DataTable)
+    .component('pv-tabview', TabView)
+    .component('pv-dropdown', Dropdown)
+    .component('pv-tabpanel', TabPanel)
+    .component('pv-datepicker', DatePicker)
+    .component('Datepicker', DatePicker)
+    .component('pv-select', Select)
+    .component('Select', Select)
     .component('pv-message', Message)
     .component('pv-panel-menu', PanelMenu)
     .component('pv-button', Button)
+    .component('Button', Button)
     .component('pv-card', Card)
     .component('pv-column', Column)
     .component('pv-confirm-dialog', ConfirmDialog)
     .component('pv-checkbox', Checkbox)
     .component('pv-data-table', DataTable)
     .component('pv-dialog', Dialog)
-    .component('pv-select', Select)
     .component('pv-select-button', SelectButton)
     .component('pv-file-upload', FileUpload)
     .component('pv-float-label', FloatLabel)
@@ -56,4 +64,4 @@ createApp(App)
     .component('Message', Message)
     .component('FormField', FormField)
     .component('Form', Form)
-    .mount('#app')
+    .mount('#app');
