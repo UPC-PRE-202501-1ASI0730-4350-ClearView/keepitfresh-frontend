@@ -238,4 +238,14 @@ input::placeholder {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 18px;
 }
+:deep(.p-button:hover){
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+:deep(.p-button){
+  border-radius: 18px !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
+}
 </style>
