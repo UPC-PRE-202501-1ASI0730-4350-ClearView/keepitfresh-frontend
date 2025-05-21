@@ -36,11 +36,8 @@ const routes = [
         component: () => import('../public/pages/sensors/sensor-status.component.vue'),
     },
     {
-      path: '/se',
-    },
-    {
         path: '/statistics',
-        component: () => import('../public/pages/statistics.component.vue'),
+        component: () => import('../public/pages/statistics/statistics.component.vue'),
     },
     {
       path: '/alerts/sensor-alerts',
