@@ -1,4 +1,13 @@
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        rounded
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+    />
+  </router-link>
   <div class="product-list">
     <h1>Registered Products</h1>
     <div v-if="products.length" class="grid">
@@ -92,5 +101,15 @@ h1 {
 }
 :deep(.surface-card){
   border-radius: 18px !important;
+}
+:deep(.p-button:hover){
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+:deep(.p-button){
+  border-radius: 18px !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
 }
 </style>

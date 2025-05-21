@@ -20,6 +20,7 @@ import {
 } from "primevue";
 import i18n from "../i18n.js";
 import router from "./router"
+import Chart from "primevue/chart";
 
 createApp(App)
     .use(router)
@@ -28,6 +29,7 @@ createApp(App)
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('pv-chart', Chart)
     .component('pv-datatable', DataTable)
     .component('pv-tabview', TabView)
     .component('pv-dropdown', Dropdown)
