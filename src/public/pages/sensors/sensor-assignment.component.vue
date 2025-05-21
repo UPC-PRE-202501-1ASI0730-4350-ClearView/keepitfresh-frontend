@@ -112,5 +112,6 @@ h2 {
   font-size: 1rem;
   color: #999;
   margin-top: 2rem;
+  font-family: 'Arial', sans-serif;
 }
 </style>

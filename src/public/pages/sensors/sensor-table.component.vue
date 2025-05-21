@@ -79,4 +79,7 @@ h2 {
   margin-bottom: 1rem;
   text-align: center;
 }
+.sensor-table{
+  font-family: 'Arial', sans-serif;
+}
 </style>
