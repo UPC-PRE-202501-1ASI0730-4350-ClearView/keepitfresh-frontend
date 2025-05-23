@@ -47,7 +47,6 @@ export default {
             { label: 'Sensor Alerts', icon: 'pi pi-wifi', command: () => router.push('/alerts/sensor-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
             { label: 'Inventory Alerts', icon: 'pi pi-box', command: () => router.push('/alerts/inventory-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
           ] },
-        { label: 'Reports', icon: 'pi pi-file', command: () => router.push('/reports'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Subscriptions', icon: 'pi pi-money-bill', command: () => router.push('/subscriptions'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Profile', icon: 'pi pi-user', command: () => router.push('/profile-details'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
       ],
