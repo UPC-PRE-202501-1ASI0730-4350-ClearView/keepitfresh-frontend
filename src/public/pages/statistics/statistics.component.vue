@@ -15,6 +15,7 @@
 <script setup>
 import MonthlyConsumptionChart from './monthly-consumption-statistics.component.vue'
 import StockLevelChart from './stock-level-statistics.component.vue'
+
 </script>
 
 <style scoped>
