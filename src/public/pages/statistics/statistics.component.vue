@@ -1,4 +1,13 @@
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        rounded
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+    />
+  </router-link>
   <div class="p-4">
     <h2 class="text-3xl font-bold text-center text-white mb-6">Supply Analytics Dashboard</h2>
     <div class="sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 graphs">
