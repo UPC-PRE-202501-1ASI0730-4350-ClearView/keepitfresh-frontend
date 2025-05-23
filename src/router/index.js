@@ -48,10 +48,6 @@ const routes = [
       component: () => import('../public/pages/alerts/inventory-alerts.component.vue')
     },
     {
-        path: '/reports',
-        component: () => import('../public/pages/reports.component.vue'),
-    },
-    {
         path: '/subscriptions',
         component: () => import('../public/pages/subscriptions.component.vue'),
     },
