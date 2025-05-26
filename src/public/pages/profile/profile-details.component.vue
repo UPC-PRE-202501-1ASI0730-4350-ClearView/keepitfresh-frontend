@@ -1,118 +1,148 @@
 <template>
-  <div class="profile-container">
-    <!-- Acerca de -->
-    <section class="section about">
-      <div class="info">
-        <h2>Acerca de</h2>
-        <p><strong>Nombre completo</strong> <span>{{ user.fullName }}</span></p>
-        <p><strong>E-mail</strong> <span>{{ user.email }}</span></p>
-        <p><strong>Dirección</strong> <span>{{ user.address }}</span></p>
-        <p><strong>Teléfono</strong> <span>{{ user.phone }}</span></p>
+  <div class="page-container">
+    <div class="profile-wrapper">
+      <h1 class="form-title">User Profile</h1>
+      <!-- Imagen de perfil -->
+      <div class="image-wrapper">
+        <img
+            :src="user.profilePicture"
+            alt="Profile"
+            class="profile-img"
+        />
       </div>
-      <div class="avatar">
-        <img src="../../assets/defaultpfp.jpg" height="225" width="225"/>
-      </div>
-    </section>
 
-    <!-- Suscripción -->
-    <section class="section subscription">
-      <div>
-        <h2>Tu suscripción</h2>
-        <p>Usted cuenta con nuestro plan <strong>premium</strong></p>
-      </div>
-      <div class="badge">
-        <img src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="Premium Badge">
-      </div>
-    </section>
+      <!-- Formulario -->
+      <div class="form-content">
+        <div class="text-left">
+          <label for="full-name">Full Name</label>
+          <pv-input-text id="full-name" v-model="user.fullName" placeholder="Full Name" class="w-full" />
+        </div>
+        <div class="text-left">
+          <label for="email">E-Mail</label>
+          <pv-input-text id="email" v-model="user.email" placeholder="Email" class="w-full" />
+        </div>
+        <div class="text-left">
+          <label for="restaurant">Restaurant</label>
+          <pv-input-text v-model="user.restaurant" placeholder="Restaurant" class="w-full" />
+        </div>
 
-    <!-- Opciones -->
-    <section class="section actions">
-      <div class="action">
-        <pc style="color: #000;"><strong>Cambiar contraseña</strong></pc>
-        <button @click="editPassword">Editar</button>
+        <pv-file-upload
+            mode="basic"
+            name="file"
+            choose-label="Upload Profile Picture"
+            @select="handleImageUpload"
+            accept="image/*"
+            :auto="true"
+            class="w-full"
+        />
+
+        <pv-button label="Save Changes" icon="pi pi-save" class="w-full" @click="saveChanges" />
       </div>
-      <div class="action">
-        <p><strong>Cambiar correo</strong></p>
-        <button @click="editEmail">Editar</button>
-      </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script setup>
-const user = {
-  fullName: "Ricardo Huamán",
-  email: "ricardoh0607@gmail.com",
-  address: "Av. Arenales 1245, Jesús María, Lima",
-  phone: "+51 991 223 010"
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const user = ref({
+  id: 1,
+  fullName: '',
+  email: '',
+  restaurant: '',
+  profilePicture: ''
+})
+
+onMounted(async () => {
+  const res = await axios.get('http://localhost:3000/users/1')
+  user.value = res.data
+})
+
+const handleImageUpload = (event) => {
+  const file = event.files?.[0]
+  if (file) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      user.value.profilePicture = reader.result
+    }
+    reader.readAsDataURL(file)
+  }
 }
 
-const editPassword = () => {
-  alert('Editar contraseña');
-}
-
-const editEmail = () => {
-  alert('Editar correo');
+const saveChanges = async () => {
+  await axios.put(`http://localhost:3000/users/${user.value.id}`, user.value)
+  editing.value = false
+  alert('Profile updated successfully')
 }
 </script>
 
 <style scoped>
-.profile-container {
-  max-width: 750px;
-  margin: auto;
-  font-family: sans-serif;
-  color: #000;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
-.section {
-  background-color: #c4c4c4;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 20px;
+.page-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-color: #0e0e0e;
+  padding: 2rem;
 }
 
-.about .info {
-  flex: 2;
-}
-
-.about p {
-  margin: 6px 0;
-}
-
-.about .avatar {
-  flex: 1;
+.profile-wrapper {
+  background-color: #1f1f1f;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  width: 100%;
+  max-width: 540px;
   text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
-.about .avatar img {
-  width: 120px;
-  border-radius: 8px;
-}
-
-.subscription .badge img {
-  width: 100px;
-}
-
-.actions {
+.image-wrapper {
   display: flex;
-  justify-content: space-between;
-  text-align: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-.action {
-  flex: 1;
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.action button {
-  margin-top: 10px;
-  padding: 6px 16px;
-  border-radius: 5px;
-  border: none;
-  background: white;
-  font-weight: bold;
-  cursor: pointer;
+.profile-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.5rem 0;
+}
+
+.profile-restaurant {
+  font-size: 16px;
+  color: #c0c0c0;
+  margin-bottom: 1.5rem;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+:deep(.p-button) {
+  background-color: #AFD6FF !important;
+  border-radius: 18px !important;
+  font-family: 'Arial', sans-serif !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+:deep(.p-button:hover) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 </style>
