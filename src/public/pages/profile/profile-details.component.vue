@@ -28,7 +28,7 @@
     <!-- Opciones -->
     <section class="section actions">
       <div class="action">
-        <p><strong>Cambiar contraseña</strong></p>
+        <pc style="color: #000;"><strong>Cambiar contraseña</strong></pc>
         <button @click="editPassword">Editar</button>
       </div>
       <div class="action">

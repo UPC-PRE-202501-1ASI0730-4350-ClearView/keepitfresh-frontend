@@ -37,16 +37,18 @@ export default {
       toggleSidebar,
       menuItems: [
         { label: 'Home', icon: 'pi pi-home', command: () => router.push('/'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
-        { label: 'Inventory', icon: 'pi pi-box', command: () => router.push('/inventory'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
-        { label: 'Sensors', icon: 'pi pi-wifi', command: () => router.push('/sensors'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
+        { label: 'Inventory', icon: 'pi pi-box', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}, items: [
+            { label: 'Add Product', icon: 'pi pi-plus', command: () =>router.push('/add-product'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
+            { label: 'Product List', icon: 'pi pi-list', command: () => router.push('/product-list'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
+          ] },
+        { label: 'Sensor Management', icon: 'pi pi-wifi', command: () => router.push('/sensor-view'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
         { label: 'Statistics', icon: 'pi pi-chart-bar', command: () => router.push('/statistics'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Alerts', icon: 'pi pi-bell', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}, items: [
             { label: 'Sensor Alerts', icon: 'pi pi-wifi', command: () => router.push('/alerts/sensor-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
             { label: 'Inventory Alerts', icon: 'pi pi-box', command: () => router.push('/alerts/inventory-alerts'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
           ] },
-        { label: 'Reports', icon: 'pi pi-file', command: () => router.push('/reports'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
         { label: 'Subscriptions', icon: 'pi pi-money-bill', command: () => router.push('/subscriptions'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
-        { label: 'Profile', icon: 'pi pi-user', command: () => router.push('/profile'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
+        { label: 'Profile', icon: 'pi pi-user', command: () => router.push('/profile-details'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
       ],
       signOutItem: [
         { label: 'Sign Out', icon: 'pi pi-sign-out', to: '/signout', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }

@@ -45,6 +45,14 @@ onMounted(() => {
 </script>
 
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+    />
+  </router-link>
   <div class="alerts-container">
     <div class="content">
       <h2>Inventory Alerts</h2>
@@ -105,7 +113,6 @@ onMounted(() => {
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 .test-controls {
-  margin-top: 5%;
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
@@ -115,8 +122,6 @@ onMounted(() => {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 35px;
   font-weight: 700;
-  color: black;
-  margin: 0;
 }
 .test-button {
   min-width: 100px;

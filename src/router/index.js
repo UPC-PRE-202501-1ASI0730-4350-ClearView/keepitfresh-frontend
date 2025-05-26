@@ -8,16 +8,36 @@ const routes = [
       component: Home,
     },
     {
-        path: '/inventory',
-        component: () => import('../public/pages/inventory.component.vue'),
+        path: '/add-product',
+        component: () => import('../public/pages/inventory/inventory.component.vue'),
     },
     {
-        path: '/sensors',
-        component: () => import('../public/pages/sensors.component.vue'),
+      path: '/product-list',
+      component: () => import('../public/pages/inventory/product-list.component.vue'),
+    },
+    {
+        path: '/sensor-view',
+        component: () => import('../public/pages/sensors/sensor-view.component.vue'),
+    },
+    {
+        path: '/sensor-assignment',
+        component: () => import('../public/pages/sensors/sensor-assignment.component.vue'),
+    },
+    {
+        path: '/sensor-table',
+        component: () => import('../public/pages/sensors/sensor-table.component.vue'),
+    },
+    {
+        path: '/sensor-edit',
+        component: () => import('../public/pages/sensors/sensor-edit.component.vue'),
+    },
+    {
+        path: '/sensor-status',
+        component: () => import('../public/pages/sensors/sensor-status.component.vue'),
     },
     {
         path: '/statistics',
-        component: () => import('../public/pages/statistics.component.vue'),
+        component: () => import('../public/pages/statistics/statistics.component.vue'),
     },
     {
       path: '/alerts/sensor-alerts',
@@ -28,20 +48,12 @@ const routes = [
       component: () => import('../public/pages/alerts/inventory-alerts.component.vue')
     },
     {
-        path: '/reports',
-        component: () => import('../public/pages/reports.component.vue'),
-    },
-    {
         path: '/subscriptions',
         component: () => import('../public/pages/subscriptions.component.vue'),
     },
     {
-        path: '/profile',
-        component: () => import('../public/pages/profile.component.vue'),
-    },
-    {
         path: '/profile-details',
-        component: () => import('../public/pages/profile-details.component.vue'),
+        component: () => import('../public/pages/profile/profile-details.component.vue'),
     }
 ];
 

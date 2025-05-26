@@ -63,22 +63,45 @@
     {
       "id": 13,
       "type": "expiration",
-      "message" : "Steak - 2 days left before expiration"
+      "message": "Steak - 2 days left before expiration"
     },
     {
       "id": 14,
       "type": "expiration",
-      "message" : "Fish - 1 day left before expiration"
+      "message": "Fish - 1 day left before expiration"
     },
     {
       "id": 15,
       "type": "stock",
-      "message" : "Steak - 1kg left in stock"
+      "message": "Steak - 1kg left in stock"
     },
     {
       "id": 16,
       "type": "stock",
-      "message" : "Fish - 2kg left in stock"
+      "message": "Fish - 2kg left in stock"
     }
+  ],
+  "products": [],
+  "supplies": [
+    { "id": 1, "name": "Rice", "category": "Grains", "unit": "kg", "minStock": 100, "currentStock": 150 },
+    { "id": 2, "name": "Chicken", "category": "Meats", "unit": "kg", "minStock": 80, "currentStock": 90 },
+    { "id": 3, "name": "Oil", "category": "Oils", "unit": "liters", "minStock": 50, "currentStock": 40 },
+    { "id": 4, "name": "Tomato", "category": "Vegetables", "unit": "kg", "minStock": 60, "currentStock": 70 },
+    { "id": 5, "name": "Cheese", "category": "Dairy", "unit": "kg", "minStock": 30, "currentStock": 25 }
+  ],
+  "consumption": [
+    { "id": 1, "supplyId": 1, "month": "January", "amount": 120 },
+    { "id": 2, "supplyId": 1, "month": "February", "amount": 150 },
+    { "id": 3, "supplyId": 2, "month": "January", "amount": 80 },
+    { "id": 4, "supplyId": 2, "month": "February", "amount": 90 },
+    { "id": 5, "supplyId": 3, "month": "January", "amount": 40 },
+    { "id": 6, "supplyId": 3, "month": "February", "amount": 55 }
+  ],
+  "purchases": [
+    { "id": 1, "supplyId": 1, "category": "Grains", "cost": 450 },
+    { "id": 2, "supplyId": 2, "category": "Meats", "cost": 700 },
+    { "id": 3, "supplyId": 3, "category": "Oils", "cost": 220 },
+    { "id": 4, "supplyId": 4, "category": "Vegetables", "cost": 180 },
+    { "id": 5, "supplyId": 5, "category": "Dairy", "cost": 320 }
   ]
 }

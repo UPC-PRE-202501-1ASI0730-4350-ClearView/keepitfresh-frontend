@@ -1,4 +1,7 @@
 {
-  "/api/v1/notifications": "/notifications"
+  "/api/v1/notifications": "/notifications",
+  "/api/v1/products": "/products",
+  "/api/v1/supplies": "/supplies",
+  "/api/v1/consumption": "/consumption",
+  "/api/v1/purchases": "/purchases"
 }
-
