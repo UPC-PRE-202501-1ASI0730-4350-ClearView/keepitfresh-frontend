@@ -86,7 +86,86 @@ onMounted(loadOrders)
 
 
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        rounded
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+    />
+  </router-link>
+  <div class="order-list">
+    <h1>All Orders</h1>
 
+    <!-- Status Filter -->
+    <div class="filter-section mb-4">
+      <pv-select
+          v-model="selectedStatus"
+          :options="statusOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Filter by status"
+          class="status-filter"
+          @change="filterByStatus"
+      />
+    </div>
+
+    <div v-if="orders.length" class="grid">
+      <div
+          v-for="order in orders"
+          :key="order.id"
+          class="col-12 sm:col-6 md:col-4 lg:col-3"
+      >
+        <div class="p-3 border-round shadow-2 surface-card">
+          <div class="order-header">
+            <div class="table-info">
+              <strong>Table {{ order.tableNumber }}</strong>
+            </div>
+            <div class="status-badge" :class="getStatusClass(order.status)">
+              {{ order.status || 'Pending' }}
+            </div>
+          </div>
+
+          <div class="mt-3 text-left content">
+            <div class="order-time">
+              <strong>Time:</strong> {{ formatTime(order.createdAt) }}
+            </div>
+            <div class="dishes-list">
+              <strong>Dishes:</strong>
+              <ul>
+                <li v-for="dish in order.dishes" :key="dish.name">
+                  {{ dish.quantity }}x {{ dish.name }}
+                </li>
+              </ul>
+            </div>
+            <div class="total-amount">
+              <strong>Total: S/ {{ order.total?.toFixed(2) || '0.00' }}</strong>
+            </div>
+          </div>
+
+          <div class="mt-3 flex justify-content-between">
+            <pv-button
+                v-if="order.status !== 'Completed'"
+                :label="getNextStatusLabel(order.status)"
+                :severity="getNextStatusSeverity(order.status)"
+                size="small"
+                @click="updateStatus(order.id, getNextStatus(order.status))"
+            />
+            <pv-button
+                icon="pi pi-trash"
+                severity="danger"
+                rounded
+                text
+                aria-label="Delete"
+                @click="handleDelete(order.id)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else class="message">No orders found.</div>
+  </div>
 </template>
 
 <style scoped>
