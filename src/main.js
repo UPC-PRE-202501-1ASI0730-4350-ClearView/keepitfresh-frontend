@@ -6,6 +6,7 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Material from '@primeuix/themes/material';
 import { Form, FormField } from '@primevue/forms';
+import {createPinia} from 'pinia'
 import {
     Button,
     Card,
@@ -16,19 +17,23 @@ import {
     Dialog, DialogService, Drawer, Message,
     FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
     Select,
-    SelectButton, Tag, Textarea, Toast, ToastService, Toolbar, DatePicker, TabView, TabPanel, Dropdown,
+    SelectButton, Tag, Textarea, Toast, ToastService, Toolbar, DatePicker, TabView, TabPanel, Dropdown, Password,
 } from "primevue";
 import i18n from "../i18n.js";
 import router from "./router"
 import Chart from "primevue/chart";
 
+const pinia = createPinia();
+
 createApp(App)
     .use(router)
+    .use(pinia)
     .use(i18n)
     .use(PrimeVue, {theme: {preset: Material}, ripple: true})
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('pv-password', Password)
     .component('pv-chart', Chart)
     .component('pv-datatable', DataTable)
     .component('pv-tabview', TabView)
@@ -63,6 +68,8 @@ createApp(App)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
+    .component('pv-form', Form)
+    .component('pv-dropdown-group', Dropdown)
     .component('Message', Message)
     .component('FormField', FormField)
     .component('Form', Form)
