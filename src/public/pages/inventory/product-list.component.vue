@@ -6,6 +6,7 @@
         text
         class="absolute top-0 right-0 m-3"
         aria-label="Profile"
+        style="color: #AFD6FF"
     />
   </router-link>
   <div class="product-list">

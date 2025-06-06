@@ -1,18 +1,30 @@
 <template>
   <div class="app-container">
-    <Sidebar />
-    <main class="main-content">
+    <!-- Ocultar sidebar en rutas públicas -->
+    <Sidebar v-if="!hideSidebar" />
+
+    <main :class="['main-content', { 'with-sidebar': !hideSidebar }]">
       <router-view />
     </main>
   </div>
 </template>
 
 <script>
-import Sidebar from './public/components/sidebar-content.component.vue';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from './public/components/sidebar-content.component.vue'
 
 export default {
-  components: {
-    Sidebar
+  components: { Sidebar },
+  setup() {
+    const route = useRoute()
+
+    // Lista de rutas donde no se debe mostrar el sidebar
+    const hiddenRoutes = ['/login', '/register']
+
+    const hideSidebar = computed(() => hiddenRoutes.includes(route.path))
+
+    return { hideSidebar }
   }
 }
 </script>
@@ -26,13 +38,10 @@ export default {
 
 .main-content {
   flex: 1;
-  transition: margin-left 0.3s ease;
-  padding: 1rem;
+  transition: margin-left 0.3s ease;;
 }
 
-@media (min-width: 768px) {
-  .main-content {
-    margin-left: 280px;
-  }
+.with-sidebar {
+  margin-left: 280px;
 }
 </style>

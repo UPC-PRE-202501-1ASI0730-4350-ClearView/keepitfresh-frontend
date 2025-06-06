@@ -56,6 +56,7 @@ onMounted(() => {
         text
         class="absolute top-0 right-0 m-3"
         aria-label="Profile"
+        style="color: #AFD6FF; border-radius: 50%"
     />
   </router-link>
   <div class="alerts-container">
@@ -143,6 +144,10 @@ onMounted(() => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+.alerts-container {
+  padding: 1rem;
+}
 
 .test-controls {
   display: flex;

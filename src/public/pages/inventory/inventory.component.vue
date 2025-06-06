@@ -7,6 +7,7 @@
           text
           class="absolute top-0 right-0 m-3"
           aria-label="Profile"
+          style="color: #AFD6FF"
       />
     </router-link>
     <div class="form-wrapper">
@@ -24,6 +25,7 @@
             <div class="field col-12">
               <label for="category">Category</label>
               <pv-select
+                  style="font-family: Arial, sans-serif"
                   id="category"
                   v-model="form.category"
                   :options="categories"
@@ -71,7 +73,7 @@
               accept="image/*"
               customUpload
               class="w-full"
-              style="background-color: #AFD6FF; border-color: #AFD6FF"
+              style="background-color: #AFD6FF; border-color: white; border-bottom-color: #AFD6FF "
               @uploader="onImageUpload"
           />
         </div>

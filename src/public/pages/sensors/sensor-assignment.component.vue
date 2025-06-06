@@ -7,25 +7,27 @@
           :key="product.id"
           class="col-12 md:col-6 lg:col-4"
       >
-        <div class="p-3 border-round shadow-2 surface-card">
+        <div class="p-3 border-round shadow-2 surface-card" style="border-radius: 18px">
           <img :src="product.image" alt="Product image" class="assignment-image" />
-          <div class="mt-2 text-center font-bold">{{ product.name }}</div>
+          <div class="mt-2 text-center font-bold" style="font-family: 'Roboto Condensed', sans-serif">{{ product.name }}</div>
 
           <div v-if="assignedSensors[product.id]" class="mt-3">
-            <label>Sensor Type</label>
+            <label style="font-family: Arial, sans-serif">Sensor Type</label>
             <pv-dropdown
                 v-model="assignedSensors[product.id].type"
                 :options="sensorTypes"
                 placeholder="Select type"
                 class="w-full mb-2"
+                style="font-family: Arial, sans-serif"
             />
 
-            <label>Status</label>
+            <label style="font-family: Arial, sans-serif">Status</label>
             <pv-dropdown
                 v-model="assignedSensors[product.id].status"
                 :options="['active', 'offline', 'maintenance']"
                 placeholder="Select status"
                 class="w-full mb-2"
+                style="font-family: Arial, sans-serif"
             />
 
             <pv-button
@@ -33,6 +35,7 @@
                 icon="pi pi-save"
                 class="w-full"
                 @click="assignSensor(product.id)"
+                style="background-color: #AFD6FF; border-color: #AFD6FF"
             />
           </div>
         </div>

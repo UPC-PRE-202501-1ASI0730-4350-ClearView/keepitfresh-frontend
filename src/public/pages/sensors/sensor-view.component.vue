@@ -6,6 +6,7 @@
         text
         class="absolute top-0 right-0 m-3"
         aria-label="Profile"
+        style="color: #AFD6FF"
     />
   </router-link>
   <div class="sensor-management p-4">
@@ -29,6 +30,7 @@ import SensorTable from './sensor-table.component.vue'
 <style scoped>
 .sensor-management {
   max-width: 100%;
+  overflow-y: auto;
 }
 
 h2 {

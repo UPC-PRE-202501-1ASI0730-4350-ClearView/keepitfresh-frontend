@@ -12,5 +12,7 @@ export default {
 </template>
 
 <style scoped>
-
+*{
+  padding: 1rem;
+}
 </style>

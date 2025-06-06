@@ -6,7 +6,6 @@
       <div class="image-wrapper">
         <img
             :src="user.profilePicture"
-            alt="Profile"
             class="profile-img"
         />
       </div>
@@ -85,12 +84,10 @@ const saveChanges = async () => {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0e0e0e;
   padding: 2rem;
 }
 
 .profile-wrapper {
-  background-color: #1f1f1f;
   border-radius: 18px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   padding: 2rem;
@@ -135,6 +132,7 @@ const saveChanges = async () => {
 
 :deep(.p-button) {
   background-color: #AFD6FF !important;
+  border-color:  #AFD6FF !important;
   border-radius: 18px !important;
   font-family: 'Arial', sans-serif !important;
   font-size: 14px !important;

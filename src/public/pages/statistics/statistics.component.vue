@@ -6,9 +6,10 @@
         text
         class="absolute top-0 right-0 m-3"
         aria-label="Profile"
+        style="color: #AFD6FF"
     />
   </router-link>
-  <div class="p-4">
+  <div class="p-4 statistics-container">
     <h2 class="text-3xl font-bold text-center text-white mb-6">Supply Analytics Dashboard</h2>
     <div class="sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 graphs">
       <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg">
@@ -28,6 +29,7 @@ import StockLevelChart from './stock-level-statistics.component.vue'
 </script>
 
 <style scoped>
+
 h2{
   font-family: 'Roboto Condensed', sans-serif;
 }
