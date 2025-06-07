@@ -36,7 +36,7 @@ export default {
       sidebarOpen,
       toggleSidebar,
       menuItems: [
-        { label: 'Home', icon: 'pi pi-home', command: () => router.push('/'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
+        { label: 'Home', icon: 'pi pi-home', command: () => router.push('/home'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}},
         { label: 'Inventory', icon: 'pi pi-box', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'}, items: [
             { label: 'Add Product', icon: 'pi pi-plus', command: () =>router.push('/add-product'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
             { label: 'Product List', icon: 'pi pi-list', command: () => router.push('/product-list'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} },
