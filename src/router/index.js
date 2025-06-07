@@ -1,16 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Login from '../public/components/login.component.vue'
-import Home from '../public/pages/dashboard.component.vue';
 
 const routes = [
     {
-      path:  '/login',
-        component: Login,
+      path: '/',
+      redirect: '/register',
     },
     {
-      path: '/',
-      component: Home,
+      path: '/login',
+      component: Login,
+    },
+    {
+      path: '/remember',
+        component: () => import('../public/pages/register/remember-password.component.vue'),
+    },
+    {
+      path: '/register',
+        component: () => import('../public/pages/register/sign-up-view.component.vue'),
+    },
+    {
+      path: '/home',
+        component: () => import('../public/pages/home/home.component.vue'),
     },
     {
         path: '/add-product',
