@@ -20,7 +20,7 @@ export default {
     const route = useRoute()
 
     // Lista de rutas donde no se debe mostrar el sidebar
-    const hiddenRoutes = ['/login', '/register']
+    const hiddenRoutes = ['/login', '/register', '/remember']
 
     const hideSidebar = computed(() => hiddenRoutes.includes(route.path))
 
