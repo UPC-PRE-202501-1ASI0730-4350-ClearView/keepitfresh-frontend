@@ -130,11 +130,13 @@ function resetForm() {
 
 async function submitForm() {
   try {
-    console.log('Submit function triggered')
-    await createProduct({
+    const product = {
       ...form.value,
-      category: form.value.category?.label
-    })
+      category: form.value.category?.label,
+      createdAt: new Date().toISOString()
+    }
+
+    await createProduct(product)
     resetForm()
     await loadProducts()
   } catch (error) {
