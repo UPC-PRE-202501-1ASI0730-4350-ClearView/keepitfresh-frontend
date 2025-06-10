@@ -202,17 +202,13 @@ const goToLogin = () => {
   border-color: #AFD6FF !important;
 }
 
-
-
-/* Para el input dentro de pv-password */
 :deep(.p-password.p-focus input),
 :deep(.p-inputtext.p-focus) {
   outline: none !important;
   box-shadow: none !important;
-  border-color: #AFD6FF !important; /* O el color que quieras */
+  border-color: #AFD6FF !important;
 }
 
-/* Si quieres quitar el borde verde también al icono toggle */
 :deep(.p-password.p-focus .p-password-input-icon) {
   color: inherit !important;
 }
