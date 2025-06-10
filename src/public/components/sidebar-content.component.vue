@@ -50,7 +50,7 @@ export default {
         { label: 'Profile', icon: 'pi pi-user', command: () => router.push('/profile-details'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
       ],
       signOutItem: [
-        { label: 'Sign Out', icon: 'pi pi-sign-out', to: '/signout', style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
+        { label: 'Sign Out', icon: 'pi pi-sign-out', command: ()=> router.push('/register'), style: {'font-family': 'Arial, sans-serif', 'font-size': '14px'} }
       ]
     };
   }
