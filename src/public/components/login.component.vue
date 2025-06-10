@@ -22,9 +22,8 @@ const handleLogin = async () => {
   try {
     const user = await login(email.value, password.value)
     console.log('User logged in:', user)
-    // Guarda el usuario en localStorage o Pinia/Vuex
     localStorage.setItem('user', JSON.stringify(user))
-    router.push('/') // redirige a home o dashboard
+    router.push('/')
   } catch (e) {
     error.value = e.message
   }
@@ -218,7 +217,6 @@ body {
   border-color: #afd6ff !important;
 }
 
-/* Para el input dentro de pv-password */
 :deep(.p-password.p-focus input),
 :deep(.p-inputtext.p-focus) {
   outline: none !important;
@@ -226,7 +224,6 @@ body {
   border-color: #afd6ff !important;
 }
 
-/* Si quieres quitar el borde verde también al icono toggle */
 :deep(.p-password.p-focus .p-password-input-icon) {
   color: inherit !important;
 }

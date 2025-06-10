@@ -2,7 +2,7 @@
 import { defineEmits, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {Form as PvForm} from "@primevue/forms";
-import {InputText as PvInputText, Password as PvPassword} from "primevue";
+import {Password as PvPassword} from "primevue";
 
 const emit = defineEmits(['submit'])
 const password = ref('')

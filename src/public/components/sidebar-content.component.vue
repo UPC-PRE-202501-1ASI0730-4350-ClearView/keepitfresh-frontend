@@ -12,7 +12,6 @@ export default {
 
     const checkScreenSize = () => {
       isMobile.value = window.innerWidth < 768;
-      // En desktop, el sidebar siempre está abierto
       if (!isMobile.value) {
         sidebarOpen.value = true;
       }
@@ -144,7 +143,6 @@ export default {
   left: 80px;
 }
 
-/* Estilos para desktop */
 @media (min-width: 768px) {
   .sidebar {
     transform: none;
