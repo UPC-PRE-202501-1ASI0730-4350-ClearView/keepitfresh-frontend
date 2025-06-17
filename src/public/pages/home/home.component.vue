@@ -1,45 +1,45 @@
 <template>
   <div class="home-container">
     <div class="content-wrapper p-6">
-      <h1 class="text-2xl font-bold mb-2 text-center">¡Hola {{}}!</h1>
-      <p class="text-gray-600 mb-4 text-center">Esto está pasando con tus productos:</p>
+      <h1 class="text-2xl font-bold mb-2 text-center">{{ $t('dashboard.greeting') }}</h1>
+      <p class="text-gray-600 mb-4 text-center">{{ $t('dashboard.description') }}</p>
 
       <div class="grid gap-4 md:grid-cols-3 justify-items-center">
-        <!-- Próximos en vencer -->
+        <!-- Productos por vencer -->
         <pv-card style="border-radius: 18px; width: 100%; max-width: 350px">
-          <template #title>Productos por vencer</template>
+          <template #title>{{ $t('dashboard.expiringProducts') }}</template>
           <template #content>
             <ul class="space-y-2">
               <li v-for="item in soonExpiring" :key="item.id">
                 <strong>{{ item.name }}</strong><br />
-                <small class="text-gray-500">Vence: {{ new Date(item.expirationDate).toLocaleDateString() }}</small>
+                <small class="text-gray-500">{{ $t('dashboard.expires') }}: {{ new Date(item.expirationDate).toLocaleDateString() }}</small>
               </li>
-              <li v-if="!soonExpiring.length" class="text-gray-500">Sin productos por vencer</li>
+              <li v-if="!soonExpiring.length" class="text-gray-500">{{ $t('dashboard.emptyExpiring') }}</li>
             </ul>
           </template>
         </pv-card>
 
         <!-- Resumen visual -->
         <pv-card style="border-radius: 18px; width: 100%; max-width: 350px">
-          <template #title>Resumen visual</template>
+          <template #title>{{ $t('dashboard.visualSummary') }}</template>
           <template #content>
             <pv-chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full" />
             <div class="mt-2 text-center">
-              <span class="font-semibold text-xl">{{ totalProducts }}</span> productos
+              <span class="font-semibold text-xl">{{ $t('dashboard.productsCount', { count: totalProducts }) }}</span>
             </div>
           </template>
         </pv-card>
 
-        <!-- Actividad reciente -->
+        <!-- Productos recientes -->
         <pv-card style="border-radius: 18px; width: 100%; max-width: 350px">
-          <template #title>Productos añadidos</template>
+          <template #title>{{ $t('dashboard.addedProducts') }}</template>
           <template #content>
             <ul class="space-y-2">
               <li v-for="item in recentProducts" :key="item.id">
                 <strong>{{ item.name }}</strong><br />
-                <small class="text-gray-500">Agregado el {{ new Date(item.createdAt).toLocaleDateString() }}</small>
+                <small class="text-gray-500">{{ $t('dashboard.addedOn') }} {{ new Date(item.createdAt).toLocaleDateString() }}</small>
               </li>
-              <li v-if="!recentProducts.length" class="text-gray-500">No hay productos recientes</li>
+              <li v-if="!recentProducts.length" class="text-gray-500">{{ $t('dashboard.emptyRecent') }}</li>
             </ul>
           </template>
         </pv-card>
@@ -50,9 +50,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { getProducts } from '/src/shared/services/inventory.service.js'
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js'
 ChartJS.register(Title, Tooltip, Legend, ArcElement)
+
+const { t } = useI18n()
 
 const products = ref([])
 const soonExpiring = ref([])
