@@ -1,89 +1,88 @@
 <script setup>
 import { defineEmits, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import {Form as PvForm} from "@primevue/forms";
-import {Password as PvPassword} from "primevue";
+import { useI18n } from 'vue-i18n'
+import { Form as PvForm } from "@primevue/forms"
+import { Password as PvPassword } from "primevue"
+import LanguageSwitcher from '/src/public/components/languageSwitcher.vue'
 
 const emit = defineEmits(['submit'])
+const { t } = useI18n()
 const password = ref('')
+const confirmPassword = ref('')
 const error = ref('')
 
 const router = useRouter()
 
 const handleSubmit = () => {
-  // Aquí llamas a la API para recordar contraseña
+  if (password.value !== confirmPassword.value) {
+    error.value = t('auth.remember.mismatch')
+    return
+  }
+
   console.log('Recuperar contraseña')
-  // Luego navegas a login
   router.push('/login')
 }
 
 const goToLogin = () => {
   router.push('/login')
 }
-
 </script>
 
 <template>
   <div class="remember-wrapper">
+    <div class="lang-switch-container">
+      <LanguageSwitcher />
+    </div>
+
     <div class="remember-form">
       <div class="title">
-        <h1>Reset Password </h1>
+        <h1>{{ t('auth.remember.title') }}</h1>
       </div>
+
       <pv-form @submit.prevent="handleSubmit">
         <div class="p-input-group mb-3">
           <pv-password
-            v-model="password"
-            placeholder="Password"
-            toggleMask
-            :feedback="false"
-            required
+              v-model="password"
+              :placeholder="t('auth.remember.new')"
+              toggleMask
+              :feedback="false"
+              required
           />
         </div>
+
         <div class="p-input-group mb-3">
           <pv-password
-            v-model="password"
-            placeholder="Confirm Password"
-            toggleMask
-            :feedback="false"
-            required
+              v-model="confirmPassword"
+              :placeholder="t('auth.remember.confirm')"
+              toggleMask
+              :feedback="false"
+              required
           />
         </div>
+
         <pv-button
-          label="Reset Password"
-          class="w-full"
-          style="
-            border-radius: 18px;
-            border-color: #afd6ff;
-            background-color: #afd6ff;
-          "
-          type="submit"
+            :label="t('auth.remember.submit')"
+            class="w-full"
+            style="border-radius: 18px; border-color: #afd6ff; background-color: #afd6ff"
+            type="submit"
         />
+
         <p class="mt-4 text-center">
-          Go back to
+          {{ t('auth.remember.return') }}
           <a @click.prevent="goToLogin"
              class="text-white font-semibold hover:underline cursor-pointer">
-             login
+            {{ t('auth.remember.login') }}
           </a>
         </p>
+
+        <p v-if="error" style="color: #ff6b6b; margin-top: 1rem">{{ error }}</p>
       </pv-form>
     </div>
   </div>
 </template>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 .remember-wrapper {
   height: 100vh;
   background-image: url("/src/assets/almacen.png");
@@ -93,6 +92,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.lang-switch-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
 }
 
 .remember-form {
@@ -110,10 +117,6 @@ body {
 .title {
   text-align: center;
   font-family: "Roboto Condensed", sans-serif;
-}
-
-.remember-form h1 {
-  text-align: center;
   margin-bottom: 24px;
 }
 
@@ -122,20 +125,11 @@ body {
   width: 265px !important;
 }
 
-.role-btn {
-  border-radius: 18px;
-  background-color: #09090b;
-  color: #fff;
-  border: 1px solid #09090b;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 :deep(.p-button:hover) {
   background-color: #afd6ff !important;
   border-color: #afd6ff !important;
 }
 
-/* Para el input dentro de pv-password */
 :deep(.p-password.p-focus input),
 :deep(.p-inputtext.p-focus) {
   outline: none !important;
@@ -143,9 +137,7 @@ body {
   border-color: #afd6ff !important;
 }
 
-/* Si quieres quitar el borde verde también al icono toggle */
 :deep(.p-password.p-focus .p-password-input-icon) {
   color: inherit !important;
 }
-
 </style>
