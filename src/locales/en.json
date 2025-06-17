@@ -1,11 +1,259 @@
 {
+  "app": {
+    "title": "KeepItFresh",
+    "greeting": "Hello!",
+    "description": "Here is what’s happening with your products:"
+  },
+  "language": {
+    "label": "Language"
+  },
   "option": {
     "home": "Home",
     "inventory": "Inventory",
-    "sensors": "Sensors",
+    "sensors": "Sensor Management",
     "statistics": "Statistics",
-    "report": "Report",
+    "alerts": "Alerts",
+    "sensorAlerts": "Sensor Alerts",
+    "inventoryAlerts": "Inventory Alerts",
     "subscription": "Subscription",
-    "profile": "Profile"
+    "profile": "Profile",
+    "signOut": "Sign Out",
+    "addProduct": "Add Product",
+    "productList": "Product List"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Login",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up"
+  },
+  "register": {
+    "title": "Create Account",
+    "fullName": "Full Name",
+    "restaurant": "Restaurant Name",
+    "submit": "Create Account"
+  },
+  "dashboard": {
+    "greeting": "Hello!",
+    "description": "Here’s what’s happening with your products:",
+    "expiringProducts": "Expiring Products",
+    "addedProducts": "Recently Added",
+    "visualSummary": "Visual Summary",
+    "expires": "Expires",
+    "addedOn": "Added on",
+    "productsCount": "{count} products"
+  },
+  "inventory": {
+    "title": "Register Product",
+    "listTitle": "Registered Products",
+    "name": "Product Name",
+    "placeholderName": "Enter a name",
+    "category": "Category",
+    "select": "Select",
+    "quantity": "Quantity",
+    "price": "Price",
+    "expirationDate": "Expiration Date",
+    "imagePlaceholder": "No image uploaded",
+    "upload": "Upload Image",
+    "cancel": "Cancel",
+    "register": "Register",
+    "card": {
+      "name": "Name",
+      "category": "Category",
+      "quantity": "Quantity",
+      "price": "Price",
+      "expires": "Expires"
+    }
+  },
+  "sensors": {
+    "assignment": {
+      "title": "Assign Sensor to Product",
+      "sensorType": "Sensor Type",
+      "selectType": "Select type",
+      "status": "Status",
+      "selectStatus": "Select status",
+      "assign": "Assign",
+      "noProducts": "All products have sensors assigned."
+    }
+  },
+  "statistics": {
+    "monthly": {
+      "title": "Monthly Consumption by Supply",
+      "exportCsv": "Export CSV",
+      "exportPdf": "Export PDF",
+      "month": "Month",
+      "consumption": "Consumption"
+    },
+    "statistics": {
+      "dashboard": {
+        "title": "Supply Analytics Dashboard"
+      },
+      "statistics": {
+        "stock": {
+          "title": "Stock Levels vs Minimum Threshold",
+          "exportCsv": "Export CSV",
+          "exportPdf": "Export PDF",
+          "supply": "Supply",
+          "quantity": "Quantity"
+        }
+      }
+    }
+  },
+  "subscriptions": {
+    "title": "Subscription Plans",
+    "pay": "Pay",
+    "basic": {
+      "title": "Basic",
+      "price": "S/. 40 /month",
+      "p1": "Up to 100 products in inventory.",
+      "p2": "Basic expiration alerts.",
+      "p3": "Search by name and category.",
+      "p4": "Report export in PDF format."
+    },
+    "premium": {
+      "title": "Premium",
+      "monthlyPrice": "S/. 60 /month",
+      "yearlyPrice": "S/. 600 /year",
+      "p1": "Unlimited products.",
+      "p2": "Unlimited users with custom roles.",
+      "p3": "Automatic reports via email.",
+      "p4": "Personalized training.",
+      "p5": "Dedicated technical support."
+    }
+  },
+  "profile": {
+    "title": "User Profile",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "email": "E-Mail",
+    "emailPlaceholder": "Enter your email",
+    "restaurant": "Restaurant",
+    "restaurantPlaceholder": "Enter restaurant name",
+    "uploadLabel": "Upload Profile Picture",
+    "save": "Save Changes",
+    "updated": "Profile updated successfully"
+  },
+  "alerts": {
+    "title": "Inventory Alerts",
+    "buttons": {
+      "stock": "Stock",
+      "expiration": "Expiration",
+      "all": "Show All"
+    }
+  },
+  "alertsSensors": {
+    "title": "Sensor Alerts",
+    "buttons": {
+      "error": "Error",
+      "warn": "Warning",
+      "success": "Success",
+      "info": "Information",
+      "stock": "Stock",
+      "expiration": "Expiration",
+      "all": "Show All"
+    },
+    "icons": {
+      "error": "pi pi-exclamation-circle",
+      "warn": "pi pi-exclamation-triangle",
+      "success": "pi pi-check-circle",
+      "info": "pi pi-info-circle",
+      "stock": "pi pi-info-circle",
+      "expiration": "pi pi-exclamation-triangle"
+    }
+  },
+  "sensorTable": {
+    "title": "Products with Assigned Sensors",
+    "image": "Image",
+    "product": "Product",
+    "category": "Category",
+    "sensorType": "Sensor Type",
+    "status": "Status",
+    "actions": "Actions",
+    "edit": "Edit Sensor"
+  },
+  "sensorEdit": {
+    "title": "Edit Sensor",
+    "typeLabel": "Sensor Type",
+    "selectType": "Select type",
+    "statusLabel": "Status",
+    "selectStatus": "Select status",
+    "cancel": "Cancel",
+    "save": "Save",
+    "types": {
+      "Temperature": "Temperature",
+      "Humidity": "Humidity",
+      "CO2": "CO₂",
+      "Motion": "Motion",
+      "Light": "Light",
+      "Weight": "Weight"
+    },
+    "statuses": {
+      "active": "Active",
+      "offline": "Offline",
+      "maintenance": "Maintenance"
+    }
+  },
+  "sensorManagement": {
+    "title": "Sensor Management"
+  },
+  "statistics": {
+    "monthly": {
+      "title": "Monthly Consumption by Supply",
+      "exportCsv": "Export CSV",
+      "exportPdf": "Export PDF",
+      "month": "Month",
+      "consumption": "Consumption"
+    },
+    "stock": {
+      "title": "Stock Levels vs Minimum Threshold",
+      "exportCsv": "Export CSV",
+      "exportPdf": "Export PDF",
+      "supply": "Supply",
+      "quantity": "Quantity"
+    }
+  },
+  "auth": {
+    "signup": {
+      "title": "Sign Up",
+      "waiter": "Waiter",
+      "manager": "Manager",
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "remember": "Remember me",
+      "submit": "Register",
+      "alreadyAccount": "Already have an account?",
+      "login": "Log In",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "login": {
+      "title": "Login",
+      "waiter": "Waiter",
+      "manager": "Manager",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember me",
+      "forgot": "Forgot?",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "error": "Invalid email or password."
+    },
+    "remember": {
+      "title": "Reset Password",
+      "new": "New Password",
+      "confirm": "Confirm Password",
+      "submit": "Reset Password",
+      "return": "Go back to",
+      "login": "login",
+      "mismatch": "Passwords do not match"
+    }
+
   }
 }
+
+
