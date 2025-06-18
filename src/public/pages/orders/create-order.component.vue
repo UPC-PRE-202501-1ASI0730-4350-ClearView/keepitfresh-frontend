@@ -72,78 +72,40 @@ async function submitOrder() {
         <div class="col-12">
           <div class="formgrid grid">
             <div class="field col-12">
-              <label for="tableNumber">Table Number</label>
-              <pv-input-number
-                  id="tableNumber"
-                  v-model="form.tableNumber"
-                  placeholder="Enter table number"
+              <label for="name">Table Name</label>
+              <pv-input-text
+                  id="name"
+                  v-model="form.name"
+                  placeholder="Enter Table name"
                   class="w-full"
-                  :min="1"
               />
             </div>
-          </div>
-        </div>
 
-        <!-- Dishes Section -->
-        <div class="col-12">
-          <h3 class="dishes-title">Order Items</h3>
-
-          <div v-for="(dish, index) in form.dishes" :key="index" class="dish-item">
-            <div class="formgrid grid">
-              <div class="field col-8">
-                <label :for="`dish-${index}`">Dish</label>
-                <pv-select
-                    :id="`dish-${index}`"
-                    v-model="dish.name"
-                    :options="availableDishes"
-                    optionLabel="name"
-                    optionValue="name"
-                    placeholder="Select a dish"
-                    class="w-full"
-                    @change="updateDishPrice(index)"
-                />
-              </div>
-
-              <div class="field col-3">
-                <label :for="`quantity-${index}`">Quantity</label>
-                <pv-input-number
-                    :id="`quantity-${index}`"
-                    v-model="dish.quantity"
-                    class="w-full"
-                    :min="1"
-                    @input="calculateTotal"
-                />
-              </div>
-
-              <div class="field col-1 flex align-items-end">
-                <pv-button
-                    icon="pi pi-trash"
-                    severity="danger"
-                    rounded
-                    text
-                    aria-label="Remove dish"
-                    @click="removeDish(index)"
-                    v-if="form.dishes.length > 1"
-                />
-              </div>
+            <div class="field col-12">
+              <label for="dishes">Dishes</label>
+              <pv-textarea
+                  id="dishes"
+                  v-model="form.dishes"
+                  placeholder="Enter dishes (e.g., 2x Grilled Chicken, 1x Caesar Salad)"
+                  class="w-full"
+                  rows="3"
+              />
             </div>
-          </div>
 
-          <div class="col-12 mt-2">
-            <pv-button
-                label="+ Add a dish"
-                severity="success"
-                text
-                @click="addDish"
-                class="add-dish-btn"
-            />
-          </div>
-        </div>
-
-        <!-- Total -->
-        <div class="col-12 mt-3">
-          <div class="total-section">
-            <h3 class="total-text">Estimated Total: S/ {{ totalAmount.toFixed(2) }}</h3>
+            <div class="field col-12">
+              <label for="price">Price (S/)</label>
+              <pv-input-number
+                  id="price"
+                  v-model="form.price"
+                  placeholder="Enter total price"
+                  class="w-full"
+                  :min="0"
+                  :step="0.01"
+                  mode="decimal"
+                  :minFractionDigits="2"
+                  :maxFractionDigits="2"
+              />
+            </div>
           </div>
         </div>
 
