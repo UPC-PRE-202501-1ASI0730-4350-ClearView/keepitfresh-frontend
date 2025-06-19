@@ -1,22 +1,26 @@
 <template>
   <pv-card>
     <template #title>
-      <h3>
-        Stock Levels vs Minimum Threshold
-      </h3>
+      <h3>{{ $t('statistics.stock.title') }}</h3>
     </template>
     <template #content>
-      <pv-chart id="stock-level-chart" type="line" :data="chartData" :options="chartOptions" class="w-full h-28rem md:h-32rem"/>
+      <pv-chart
+          id="stock-level-chart"
+          type="line"
+          :data="chartData"
+          :options="chartOptions"
+          class="w-full h-28rem md:h-32rem"
+      />
       <div class="flex justify-end gap-2 mb-2">
         <pv-button
-            label="Export CSV"
+            :label="$t('statistics.stock.exportCsv')"
             icon="pi pi-file-o"
             @click="exportStockLevelCSV"
             class="p-button-sm p-button-success"
             style="background-color: #62B965; border-color: #62B965"
         />
         <pv-button
-            label="Export PDF"
+            :label="$t('statistics.stock.exportPdf')"
             icon="pi pi-file-pdf"
             @click="exportStockLevelPDF"
             class="p-button-sm p-button-success"
@@ -29,10 +33,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import {getStockLevels} from "../../../shared/services/inventory.service.js";
+import { useI18n } from 'vue-i18n'
+import { getStockLevels } from '../../../shared/services/inventory.service.js'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
-import Papa from 'papaparse';
+import Papa from 'papaparse'
+
+const { t } = useI18n()
 
 const chartData = ref(null)
 const chartOptions = ref({})
@@ -74,7 +81,6 @@ onMounted(async () => {
 
 const exportStockLevelPDF = async () => {
   const chartElement = document.getElementById('stock-level-chart')
-
   if (!chartElement) return
 
   const canvas = await html2canvas(chartElement, {
@@ -89,17 +95,16 @@ const exportStockLevelPDF = async () => {
   const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
 
   pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight)
-  pdf.save('stock-level.pdf')
+  pdf.save(`${t('statistics.stock.filename')}.pdf`)
 }
 
 const exportStockLevelCSV = async () => {
-  // Usa los datos que ya tienes en chartData
   const data = chartData.value
   if (!data || !data.datasets || !data.datasets[0]) return
 
   const csvData = data.datasets[0].data.map((value, index) => ({
-    Supply: data.labels[index],
-    Quantity: value
+    [t('statistics.stock.supply')]: data.labels[index],
+    [t('statistics.stock.quantity')]: value
   }))
 
   const csv = Papa.unparse(csvData)
@@ -107,19 +112,15 @@ const exportStockLevelCSV = async () => {
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
   const link = document.createElement('a')
   link.href = URL.createObjectURL(blob)
-  link.setAttribute('download', 'stock-level.csv')
+  link.setAttribute('download', `${t('statistics.stock.filename')}.csv`)
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
 }
-
 </script>
 
 <style scoped>
-.h-25rem {
-  height: 25rem;
-}
-h3{
-  font-family: "Roboto Condensed", sans-serif;
+h3 {
+  font-family: 'Roboto Condensed', sans-serif;
 }
 </style>

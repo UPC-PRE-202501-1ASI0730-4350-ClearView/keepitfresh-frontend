@@ -11,37 +11,40 @@
       />
     </router-link>
     <div class="form-wrapper">
-      <h2 class="form-title">Register Product</h2>
+      <h2 class="form-title">{{ $t('inventory.title') }}</h2>
 
       <div class="grid formgrid p-fluid">
-        <!-- Form Fields -->
         <div class="col-12">
           <div class="formgrid grid">
             <div class="field col-12">
-              <label for="name">Product Name</label>
-              <pv-input-text id="name" v-model="form.name" placeholder="Enter a name" class="w-full" />
+              <label for="name">{{ $t('inventory.name') }}</label>
+              <pv-input-text
+                  id="name"
+                  v-model="form.name"
+                  :placeholder="$t('inventory.placeholderName')"
+                  class="w-full"
+              />
             </div>
 
             <div class="field col-12">
-              <label for="category">Category</label>
+              <label for="category">{{ $t('inventory.category') }}</label>
               <pv-select
-                  style="font-family: Arial, sans-serif"
                   id="category"
                   v-model="form.category"
                   :options="categories"
                   optionLabel="label"
-                  placeholder="Select"
+                  :placeholder="$t('inventory.select')"
                   class="w-full"
               />
             </div>
 
             <div class="field col-6">
-              <label for="quantity">Quantity</label>
+              <label for="quantity">{{ $t('inventory.quantity') }}</label>
               <pv-input-number id="quantity" v-model="form.quantity" class="w-full" />
             </div>
 
             <div class="field col-6">
-              <label for="price">Price</label>
+              <label for="price">{{ $t('inventory.price') }}</label>
               <pv-input-number
                   id="price"
                   v-model="form.price"
@@ -53,8 +56,13 @@
             </div>
 
             <div class="field col-12">
-              <label for="expiration">Expiration Date</label>
-              <pv-datepicker v-model="form.expirationDate" dateFormat="mm/dd/yy" showIcon class="w-full" />
+              <label for="expiration">{{ $t('inventory.expirationDate') }}</label>
+              <pv-datepicker
+                  v-model="form.expirationDate"
+                  dateFormat="mm/dd/yy"
+                  showIcon
+                  class="w-full"
+              />
             </div>
           </div>
         </div>
@@ -63,25 +71,31 @@
         <div class="col-12 flex flex-column align-items-center gap-3">
           <div class="image-preview">
             <img v-if="previewUrl" :src="previewUrl" alt="Preview" class="preview-img" />
-            <div v-else class="preview-placeholder">No image uploaded</div>
+            <div v-else class="preview-placeholder">{{ $t('inventory.imagePlaceholder') }}</div>
           </div>
 
           <pv-file-upload
               mode="basic"
-              chooseLabel="Upload Image"
+              :chooseLabel="$t('inventory.upload')"
               auto
               accept="image/*"
               customUpload
               class="w-full"
-              style="background-color: #AFD6FF; border-color: white; border-bottom-color: #AFD6FF "
+              style="background-color: #AFD6FF; border-color: white; border-bottom-color: #AFD6FF"
               @uploader="onImageUpload"
           />
         </div>
 
         <!-- Buttons -->
         <div class="col-12 mt-4 flex justify-content-center gap-3">
-          <pv-button label="Cancel" severity="secondary" class="px-5" @click="resetForm"/>
-          <pv-button label="Register" icon="pi pi-check" class="px-5" @click="submitForm" style="background-color: #AFD6FF; border-color: #AFD6FF"/>
+          <pv-button :label="$t('inventory.cancel')" severity="secondary" class="px-5" @click="resetForm" />
+          <pv-button
+              :label="$t('inventory.register')"
+              icon="pi pi-check"
+              class="px-5"
+              @click="submitForm"
+              style="background-color: #AFD6FF; border-color: #AFD6FF"
+          />
         </div>
       </div>
     </div>
@@ -90,7 +104,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { createProduct, getProducts} from '/src/shared/services/inventory.service.js'
+import { useI18n } from 'vue-i18n'
+import { createProduct, getProducts } from '/src/shared/services/inventory.service.js'
+
+const { t } = useI18n()
 
 const form = ref({
   name: '',
@@ -159,97 +176,3 @@ const categories = [
 
 onMounted(loadProducts)
 </script>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-/* Posicionamiento general */
-.page-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  position: relative;
-}
-
-h2 {
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 35px;
-  font-weight: 700;
-  margin: 0;
-}
-
-label{
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.preview-placeholder{
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: #999;
-}
-
-.form-wrapper {
-  position: relative;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 540px;
-}
-
-.form-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-}
-
-/* Imagen */
-.image-preview {
-  width: 100%;
-  text-align: center;
-}
-
-.preview-img {
-  max-height: 180px;
-  object-fit: contain;
-  width: 100%;
-  border: 2px dashed #cce4ff;
-  border-radius: 0.5rem;
-}
-
-.preview-placeholder {
-  padding: 1rem;
-  font-size: 0.875rem;
-  color: #999;
-  border: 2px dashed #ccc;
-  border-radius: 0.5rem;
-}
-:deep(.p-button) {
-  border-radius: 18px !important;
-  font-family: 'Arial', sans-serif !important;
-  font-size: 14px !important;
-}
-input::placeholder {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  color: #999;
-}
-.form-wrapper{
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 18px;
-}
-:deep(.p-button:hover){
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-:deep(.p-button){
-  border-radius: 18px !important;
-  font-family: Arial, sans-serif !important;
-  font-size: 14px !important;
-}
-</style>

@@ -2,7 +2,10 @@
 import { defineEmits, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '/src/shared/services/user.service.js'
+import { useI18n } from 'vue-i18n'
+import LanguageSwitcher from './languageSwitcher.vue'
 
+const { t } = useI18n()
 const emit = defineEmits(['submit'])
 
 const email = ref('')
@@ -21,134 +24,109 @@ const handleLogin = async () => {
   error.value = null
   try {
     const user = await login(email.value, password.value)
-    console.log('User logged in:', user)
     localStorage.setItem('user', JSON.stringify(user))
     router.push('/')
   } catch (e) {
-    error.value = e.message
+    error.value = t('auth.login.error')
   }
 }
 
-const goToRegister = () => {
-  router.push('/register')
-}
-
-const goToRemember = () => {
-  router.push('/remember')
-}
-
+const goToRegister = () => router.push('/register')
+const goToRemember = () => router.push('/remember')
 </script>
 
 <template>
   <div class="login-wrapper">
+    <!-- Botón de cambio de idioma en la esquina superior derecha de la página -->
+    <div class="lang-switch-page">
+      <LanguageSwitcher />
+    </div>
+
     <div class="login-form">
+      <!-- Título -->
       <div class="title">
-        <h1>Login</h1>
+        <h1>{{ $t('auth.login.title') }}</h1>
       </div>
+
+      <!-- Selección de rol -->
       <div class="role-select mb-3 mt-3">
         <pv-button
-            label="Waiter"
+            :label="$t('auth.login.waiter')"
             :class="{ 'active-role': role === 'waiter' }"
             @click="selectRole('waiter')"
             class="mr-2 role-btn"
         />
         <pv-button
-            label="Manager"
+            :label="$t('auth.login.manager')"
             :class="{ 'active-role': role === 'manager' }"
             @click="selectRole('manager')"
             class="role-btn"
         />
       </div>
+
+      <!-- Formulario -->
       <pv-form @submit.prevent="handleLogin">
         <div class="p-input-group mb-3">
           <pv-input-text
               v-model="email"
-              placeholder="Email"
+              :placeholder="$t('auth.login.email')"
               style="border-radius: 18px; width: 265px"
               required
           />
-          <span class="p-input-group-addon"></span>
         </div>
 
         <div class="p-input-group mb-3">
           <pv-password
               v-model="password"
-              placeholder="Password"
+              :placeholder="$t('auth.login.password')"
               toggleMask
               :feedback="false"
               required
           />
         </div>
 
-        <div
-            style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            height: 40px;
-          "
-        >
-          <div style="display: flex; align-items: center">
+        <div class="remember-container">
+          <div class="remember-left">
             <pv-checkbox v-model="remember" inputId="remember" />
-            <label for="remember" style="margin-left: 8px; color: white">
-              Remember me
+            <label for="remember" class="ml-2 text-white">
+              {{ $t('auth.login.remember') }}
             </label>
           </div>
           <a
               href="#"
-              style="
-              color: white;
-              font-size: 0.875rem;
-              text-decoration: underline;
-              white-space: nowrap;
-            "
-              @click.prevent="goToRemember"
               class="text-white font-semibold hover:underline cursor-pointer"
+              @click.prevent="goToRemember"
           >
-            Forgot?
+            {{ $t('auth.login.forgot') }}
           </a>
         </div>
 
         <pv-button
-            label="Login"
+            :label="$t('auth.login.submit')"
             class="w-full"
-            style="
-            border-radius: 18px;
-            border-color: #afd6ff;
-            background-color: #afd6ff;
-          "
+            style="border-radius: 18px; border-color: #afd6ff; background-color: #afd6ff"
             type="submit"
         />
+
         <p class="mt-4 text-center">
-          Don't have an account?
+          {{ $t('auth.login.noAccount') }}
           <a
               @click.prevent="goToRegister"
               class="text-white font-semibold hover:underline cursor-pointer"
           >
-            Register
+            {{ $t('auth.login.register') }}
           </a>
         </p>
       </pv-form>
-      <p v-if="error" style="color: #ff6b6b; margin-top: 1rem">{{ error }}</p>
+
+      <p v-if="error" style="color: #ff6b6b; margin-top: 1rem">
+        {{ error }}
+      </p>
     </div>
   </div>
 </template>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 .login-wrapper {
   height: 100vh;
   background-image: url("/src/assets/almacen.png");
@@ -158,6 +136,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.lang-switch-page {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
 }
 
 .login-form {
@@ -172,19 +158,14 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.role-select {
-  display: flex;
-  justify-content: center;
-}
-
 .title {
   text-align: center;
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.login-form h1 {
-  text-align: center;
-  margin-bottom: 24px;
+.role-select {
+  display: flex;
+  justify-content: center;
 }
 
 :deep(.p-password input) {
@@ -226,5 +207,18 @@ body {
 
 :deep(.p-password.p-focus .p-password-input-icon) {
   color: inherit !important;
+}
+
+.remember-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  height: 40px;
+}
+
+.remember-left {
+  display: flex;
+  align-items: center;
 }
 </style>

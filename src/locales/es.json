@@ -1,11 +1,236 @@
 {
+  "app": {
+    "title": "KeepItFresh",
+    "greeting": "¡Hola!",
+    "description": "Esto está pasando con tus productos:"
+  },
+  "language": {
+    "label": "Idioma"
+  },
   "option": {
     "home": "Inicio",
     "inventory": "Inventario",
-    "sensors": "Sensores",
+    "sensors": "Gestión de Sensores",
     "statistics": "Estadísticas",
-    "report": "Reporte",
+    "alerts": "Alertas",
+    "sensorAlerts": "Alertas de Sensores",
+    "inventoryAlerts": "Alertas de Inventario",
     "subscription": "Suscripción",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "signOut": "Cerrar sesión",
+    "addProduct": "Agregar producto",
+    "productList": "Lista de productos"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Acceder",
+    "noAccount": "¿No tienes cuenta?",
+    "register": "Registrarse"
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "fullName": "Nombre completo",
+    "restaurant": "Nombre del restaurante",
+    "submit": "Crear cuenta"
+  },
+  "dashboard": {
+    "greeting": "¡Hola!",
+    "description": "Esto está pasando con tus productos:",
+    "expiringProducts": "Productos por vencer",
+    "addedProducts": "Productos añadidos",
+    "visualSummary": "Resumen visual",
+    "expires": "Vence",
+    "addedOn": "Agregado el",
+    "productsCount": "{count} productos"
+  },
+  "inventory": {
+    "title": "Registrar Producto",
+    "listTitle": "Productos Registrados",
+    "name": "Nombre del Producto",
+    "placeholderName": "Ingresa un nombre",
+    "category": "Categoría",
+    "select": "Seleccionar",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "expirationDate": "Fecha de Vencimiento",
+    "imagePlaceholder": "No se ha subido imagen",
+    "upload": "Subir Imagen",
+    "cancel": "Cancelar",
+    "register": "Registrar",
+    "card": {
+      "name": "Nombre",
+      "category": "Categoría",
+      "quantity": "Cantidad",
+      "price": "Precio",
+      "expires": "Vence"
+    }
+  },
+  "sensors": {
+    "assignment": {
+      "title": "Asignar sensor a producto",
+      "sensorType": "Tipo de sensor",
+      "selectType": "Seleccionar tipo",
+      "status": "Estado",
+      "selectStatus": "Seleccionar estado",
+      "assign": "Asignar",
+      "noProducts": "Todos los productos ya tienen sensor asignado."
+    }
+  },
+  "statistics": {
+    "monthly": {
+      "title": "Consumo mensual por insumo",
+      "exportCsv": "Exportar CSV",
+      "exportPdf": "Exportar PDF",
+      "month": "Mes",
+      "consumption": "Consumo"
+    },
+    "stock": {
+      "title": "Niveles de stock vs mínimo",
+      "exportCsv": "Exportar CSV",
+      "exportPdf": "Exportar PDF",
+      "supply": "Insumo",
+      "quantity": "Cantidad"
+    },
+    "dashboard": {
+      "title": "Panel de Análisis de Insumos"
+    }
+  },
+  "subscriptions": {
+    "title": "Planes de Suscripción",
+    "pay": "Pagar",
+    "basic": {
+      "title": "Básico",
+      "price": "S/. 40 /mes",
+      "p1": "Hasta 100 productos en inventario.",
+      "p2": "Alertas básicas por vencimiento.",
+      "p3": "Búsqueda por nombre y categoría.",
+      "p4": "Exportación de reportes en PDF."
+    },
+    "premium": {
+      "title": "Premium",
+      "monthlyPrice": "S/. 60 /mes",
+      "yearlyPrice": "S/. 600 /año",
+      "p1": "Productos ilimitados.",
+      "p2": "Usuarios ilimitados con roles personalizados.",
+      "p3": "Reportes automáticos por correo.",
+      "p4": "Capacitación personalizada.",
+      "p5": "Soporte técnico dedicado."
+    }
+  },
+  "profile": {
+    "title": "Perfil del Usuario",
+    "fullName": "Nombre completo",
+    "fullNamePlaceholder": "Ingrese su nombre completo",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingrese su correo",
+    "restaurant": "Restaurante",
+    "restaurantPlaceholder": "Ingrese el nombre del restaurante",
+    "uploadLabel": "Subir foto de perfil",
+    "save": "Guardar Cambios",
+    "updated": "Perfil actualizado exitosamente"
+  },
+  "alerts": {
+    "title": "Alertas de Inventario",
+    "buttons": {
+      "stock": "Stock",
+      "expiration": "Vencimiento",
+      "all": "Mostrar Todo"
+    }
+  },
+  "alertsSensors": {
+    "title": "Alertas de Sensores",
+    "buttons": {
+      "error": "Error",
+      "warn": "Advertencia",
+      "success": "Éxito",
+      "info": "Información",
+      "stock": "Stock",
+      "expiration": "Vencimiento",
+      "all": "Mostrar Todo"
+    },
+    "icons": {
+      "error": "pi pi-exclamation-circle",
+      "warn": "pi pi-exclamation-triangle",
+      "success": "pi pi-check-circle",
+      "info": "pi pi-info-circle",
+      "stock": "pi pi-info-circle",
+      "expiration": "pi pi-exclamation-triangle"
+    }
+  },
+  "sensorTable": {
+    "title": "Productos con Sensores Asignados",
+    "image": "Imagen",
+    "product": "Producto",
+    "category": "Categoría",
+    "sensorType": "Tipo de Sensor",
+    "status": "Estado",
+    "actions": "Acciones",
+    "edit": "Editar Sensor"
+  },
+  "sensorEdit": {
+    "title": "Editar Sensor",
+    "typeLabel": "Tipo de Sensor",
+    "selectType": "Seleccionar tipo",
+    "statusLabel": "Estado",
+    "selectStatus": "Seleccionar estado",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "types": {
+      "Temperature": "Temperatura",
+      "Humidity": "Humedad",
+      "CO2": "CO₂",
+      "Motion": "Movimiento",
+      "Light": "Luz",
+      "Weight": "Peso"
+    },
+    "statuses": {
+      "active": "Activo",
+      "offline": "Desconectado",
+      "maintenance": "Mantenimiento"
+    }
+  },
+  "sensorManagement": {
+    "title": "Gestión de Sensores"
+  },
+  "auth": {
+    "signup": {
+      "title": "Registrarse",
+      "waiter": "Mozo",
+      "manager": "Gerente",
+      "email": "Correo electrónico",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "remember": "Recuérdame",
+      "submit": "Registrarse",
+      "alreadyAccount": "¿Ya tienes una cuenta?",
+      "login": "Iniciar sesión",
+      "passwordMismatch": "Las contraseñas no coinciden"
+    },
+    "login": {
+      "title": "Iniciar sesión",
+      "waiter": "Mozo",
+      "manager": "Gerente",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recuérdame",
+      "forgot": "¿Olvidaste?",
+      "submit": "Ingresar",
+      "noAccount": "¿No tienes una cuenta?",
+      "register": "Registrarse",
+      "error": "Correo o contraseña incorrectos."
+    },
+    "remember": {
+      "title": "Restablecer contraseña",
+      "new": "Nueva contraseña",
+      "confirm": "Confirmar contraseña",
+      "submit": "Restablecer contraseña",
+      "return": "¿Deseas volver al",
+      "login": "inicio de sesión?",
+      "mismatch": "Las contraseñas no coinciden"
+    }
   }
 }

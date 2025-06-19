@@ -16,117 +16,81 @@
           class="text-3xl md:text-4xl font-bold text-center mb-10 text-white"
           style="font-family: 'Roboto Condensed', sans-serif;"
       >
-        Subscription Plans
+        {{ $t('subscriptions.title') }}
       </h2>
 
       <div class="grid">
-        <!-- Basic Plan -->
-        <pv-card
-            class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white"
-            style="border-radius: 18px;"
-        >
+        <!-- Plan Básico -->
+        <pv-card class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white" style="border-radius: 18px;">
           <template #title>
-            <h3
-                class="text-xl font-semibold text-center"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              Basic
+            <h3 class="text-xl font-semibold text-center" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.basic.title') }}
             </h3>
           </template>
           <template #content>
-            <div
-                class="text-center text-2xl font-bold mb-3"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              S/. 40<span class="text-sm font-normal"> /month</span>
+            <div class="text-center text-2xl font-bold mb-3" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.basic.price') }}
             </div>
-            <ul
-                class="text-sm text-gray-400 mb-5 space-y-1 px-4"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              <li>Up to 100 products in inventory.</li>
-              <li>Basic expiration alerts.</li>
-              <li>Search by name and category.</li>
-              <li>Report export in PDF format.</li>
+            <ul class="text-sm text-gray-400 mb-5 space-y-1 px-4" style="font-family: 'Arial', sans-serif;">
+              <li>{{ $t('subscriptions.basic.p1') }}</li>
+              <li>{{ $t('subscriptions.basic.p2') }}</li>
+              <li>{{ $t('subscriptions.basic.p3') }}</li>
+              <li>{{ $t('subscriptions.basic.p4') }}</li>
             </ul>
             <pv-button
-                label="Pay"
+                :label="$t('subscriptions.pay')"
                 class="w-full p-button-sm p-button-secondary"
                 style="font-family: 'Arial', sans-serif; border-radius: 10px"
             />
           </template>
         </pv-card>
 
-        <!-- Premium Plan -->
-        <pv-card
-            class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white"
-            style="border-radius: 18px;"
-        >
+        <!-- Premium Mensual -->
+        <pv-card class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white" style="border-radius: 18px;">
           <template #title>
-            <h3
-                class="text-xl font-semibold text-center"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              Premium
+            <h3 class="text-xl font-semibold text-center" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.premium.title') }}
             </h3>
           </template>
           <template #content>
-            <div
-                class="text-center text-2xl font-bold mb-3"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              S/. 60<span class="text-sm font-normal"> /month</span>
+            <div class="text-center text-2xl font-bold mb-3" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.premium.monthlyPrice') }}
             </div>
-            <ul
-                class="text-sm text-gray-400 mb-5 space-y-1 px-4"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              <li>Unlimited products.</li>
-              <li>Unlimited users with custom roles.</li>
-              <li>Automatic reports via email.</li>
-              <li>Personalized training.</li>
-              <li>Dedicated technical support.</li>
+            <ul class="text-sm text-gray-400 mb-5 space-y-1 px-4" style="font-family: 'Arial', sans-serif;">
+              <li>{{ $t('subscriptions.premium.p1') }}</li>
+              <li>{{ $t('subscriptions.premium.p2') }}</li>
+              <li>{{ $t('subscriptions.premium.p3') }}</li>
+              <li>{{ $t('subscriptions.premium.p4') }}</li>
+              <li>{{ $t('subscriptions.premium.p5') }}</li>
             </ul>
             <pv-button
-                label="Pay"
+                :label="$t('subscriptions.pay')"
                 class="w-full p-button-sm p-button-secondary"
                 style="font-family: 'Arial', sans-serif; border-radius: 10px"
             />
           </template>
         </pv-card>
 
-        <!-- Premium Plan -->
-        <pv-card
-            class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white"
-            style="border-radius: 18px;"
-        >
+        <!-- Premium Anual -->
+        <pv-card class="shadow-lg border border-gray-700 rounded-xl p-4 bg-[#111] text-white" style="border-radius: 18px;">
           <template #title>
-            <h3
-                class="text-xl font-semibold text-center"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              Premium
+            <h3 class="text-xl font-semibold text-center" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.premium.title') }}
             </h3>
           </template>
           <template #content>
-            <div
-                class="text-center text-2xl font-bold mb-3"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              S/. 600<span class="text-sm font-normal"> /year</span>
+            <div class="text-center text-2xl font-bold mb-3" style="font-family: 'Arial', sans-serif;">
+              {{ $t('subscriptions.premium.yearlyPrice') }}
             </div>
-            <ul
-                class="text-sm text-gray-400 mb-5 space-y-1 px-4"
-                style="font-family: 'Arial', sans-serif;"
-            >
-              <li>Unlimited products.</li>
-              <li>Unlimited users with custom roles.</li>
-              <li>Automatic reports via email.</li>
-              <li>Personalized training.</li>
-              <li>Dedicated technical support.</li>
+            <ul class="text-sm text-gray-400 mb-5 space-y-1 px-4" style="font-family: 'Arial', sans-serif;">
+              <li>{{ $t('subscriptions.premium.p1') }}</li>
+              <li>{{ $t('subscriptions.premium.p2') }}</li>
+              <li>{{ $t('subscriptions.premium.p3') }}</li>
+              <li>{{ $t('subscriptions.premium.p4') }}</li>
+              <li>{{ $t('subscriptions.premium.p5') }}</li>
             </ul>
             <pv-button
-                label="Pay"
+                :label="$t('subscriptions.pay')"
                 class="w-full p-button-sm p-button-secondary"
                 style="font-family: 'Arial', sans-serif; border-radius: 10px"
             />
@@ -137,7 +101,10 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>
 
 <style scoped>
 .cards-container {
@@ -154,7 +121,6 @@
   gap: 1.5rem;
 }
 
-/* Opcionales: mejoras para botones PrimeVue */
 :deep(.p-button:hover) {
   opacity: 1;
   transform: translateY(-2px);

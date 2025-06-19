@@ -1,6 +1,6 @@
 <template>
   <div class="sensor-assignment">
-    <h2>Assign Sensor to Product</h2>
+    <h2>{{ $t('sensors.assignment.title') }}</h2>
     <div v-if="products.length" class="grid">
       <div
           v-for="product in products"
@@ -9,29 +9,31 @@
       >
         <div class="p-3 border-round shadow-2 surface-card" style="border-radius: 18px">
           <img :src="product.image" alt="Product image" class="assignment-image" />
-          <div class="mt-2 text-center font-bold" style="font-family: 'Roboto Condensed', sans-serif">{{ product.name }}</div>
+          <div class="mt-2 text-center font-bold" style="font-family: 'Roboto Condensed', sans-serif">
+            {{ product.name }}
+          </div>
 
           <div v-if="assignedSensors[product.id]" class="mt-3">
-            <label style="font-family: Arial, sans-serif">Sensor Type</label>
+            <label style="font-family: Arial, sans-serif">{{ $t('sensors.assignment.sensorType') }}</label>
             <pv-dropdown
                 v-model="assignedSensors[product.id].type"
                 :options="sensorTypes"
-                placeholder="Select type"
+                :placeholder="$t('sensors.assignment.selectType')"
                 class="w-full mb-2"
                 style="font-family: Arial, sans-serif"
             />
 
-            <label style="font-family: Arial, sans-serif">Status</label>
+            <label style="font-family: Arial, sans-serif">{{ $t('sensors.assignment.status') }}</label>
             <pv-dropdown
                 v-model="assignedSensors[product.id].status"
-                :options="['active', 'offline', 'maintenance']"
-                placeholder="Select status"
+                :options="statusOptions"
+                :placeholder="$t('sensors.assignment.selectStatus')"
                 class="w-full mb-2"
                 style="font-family: Arial, sans-serif"
             />
 
             <pv-button
-                label="Assign"
+                :label="$t('sensors.assignment.assign')"
                 icon="pi pi-save"
                 class="w-full"
                 @click="assignSensor(product.id)"
@@ -41,18 +43,22 @@
         </div>
       </div>
     </div>
-    <div v-else class="no-products">All products have sensors assigned.</div>
+    <div v-else class="no-products">{{ $t('sensors.assignment.noProducts') }}</div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { getProducts, updateProduct } from '/src/shared/services/inventory.service.js'
+
+const { t } = useI18n()
 
 const products = ref([])
 const assignedSensors = ref({})
 
 const sensorTypes = ['Temperature', 'Humidity', 'CO2', 'Motion', 'Light', 'Weight']
+const statusOptions = ['active', 'offline', 'maintenance']
 
 async function loadProducts() {
   const res = await getProducts()
