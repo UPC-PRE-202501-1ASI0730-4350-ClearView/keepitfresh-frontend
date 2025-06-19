@@ -14,9 +14,6 @@
       {{ $t('statistics.dashboard.title') }}
     </h2>
     <div class="sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 graphs">
-      <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg">
-        <MonthlyConsumptionChart />
-      </div>
       <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg col-span-2">
         <StockLevelChart />
       </div>
@@ -26,7 +23,6 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import MonthlyConsumptionChart from './monthly-consumption-statistics.component.vue'
 import StockLevelChart from './stock-level-statistics.component.vue'
 
 const { t } = useI18n()
