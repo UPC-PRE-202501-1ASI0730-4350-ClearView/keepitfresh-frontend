@@ -1,8 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { Button as PvButton, Message as PvMessage } from "primevue";
+import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { Button as PvButton, Message as PvMessage } from 'primevue'
 
-// Estado para controlar qué notificaciones mostrar
+const { t } = useI18n()
+
 const activeNotifications = ref({
   error: false,
   warn: false,
@@ -10,42 +12,34 @@ const activeNotifications = ref({
   info: false,
   stock: false,
   expiration: false
-});
+})
 
-// Notificaciones cargadas desde la API
-const notifications = ref([]);
+const notifications = ref([])
 
-// Función para obtener notificaciones desde la API
 const fetchNotifications = async () => {
   try {
-    const response = await fetch('http://localhost:3000/notifications');
-    notifications.value = await response.json();
+    const response = await fetch('http://localhost:3000/notifications')
+    notifications.value = await response.json()
   } catch (error) {
-    console.error('Error fetching notifications:', error);
+    console.error('Error fetching notifications:', error)
   }
-};
+}
 
-// Función para mostrar/ocultar notificaciones por tipo
 const toggleNotification = (type) => {
-  activeNotifications.value[type] = !activeNotifications.value[type];
-};
+  activeNotifications.value[type] = !activeNotifications.value[type]
+}
 
-// Función para mostrar todas las notificaciones
 const showAllNotifications = () => {
   for (const type in activeNotifications.value) {
-    activeNotifications.value[type] = true;
+    activeNotifications.value[type] = true
   }
-};
+}
 
-// Filtrar notificaciones por tipo
 const getNotificationsByType = (type) => {
-  return notifications.value.filter(notification => notification.type === type);
-};
+  return notifications.value.filter(notification => notification.type === type)
+}
 
-// Cargar notificaciones al montar el componente
-onMounted(() => {
-  fetchNotifications();
-});
+onMounted(fetchNotifications)
 </script>
 
 <template>
@@ -56,24 +50,26 @@ onMounted(() => {
         text
         class="absolute top-0 right-0 m-3"
         aria-label="Profile"
+        style="color: #AFD6FF; border-radius: 50%"
     />
   </router-link>
+
   <div class="alerts-container">
     <div class="content">
-      <h2>Sensor Alerts</h2>
+      <h2>{{ t('alertsSensors.title') }}</h2>
 
       <!-- Panel de control para pruebas -->
       <div class="test-controls">
         <pv-button
-            v-for="type in ['error', 'warn', 'success', 'info']"
+            v-for="type in ['error', 'warn', 'success', 'info', 'stock', 'expiration']"
             :key="type"
-            :label="type.toUpperCase()"
+            :label="t(`alertsSensors.buttons.${type}`)"
             @click="toggleNotification(type)"
             :severity="type"
             class="test-button"
         />
         <pv-button
-            label="SHOW ALL"
+            :label="t('alertsSensors.buttons.all')"
             @click="showAllNotifications"
             severity="secondary"
         />
@@ -81,60 +77,19 @@ onMounted(() => {
 
       <!-- Contenedor de notificaciones -->
       <div class="message-container">
-        <!-- Notificaciones de error -->
-        <template v-if="activeNotifications.error">
-          <pv-message
-              v-for="notification in getNotificationsByType('error')"
-              :key="notification.id"
-              closable
-              severity="error"
-              icon="pi pi-exclamation-circle"
-              @close="activeNotifications.error = false"
-          >
-            {{ notification.message }}
-          </pv-message>
-        </template>
-
-        <!-- Notificaciones de advertencia -->
-        <template v-if="activeNotifications.warn">
-          <pv-message
-              v-for="notification in getNotificationsByType('warn')"
-              :key="notification.id"
-              closable
-              severity="warn"
-              icon="pi pi-exclamation-triangle"
-              @close="activeNotifications.warn = false"
-          >
-            {{ notification.message }}
-          </pv-message>
-        </template>
-
-        <!-- Notificaciones de éxito -->
-        <template v-if="activeNotifications.success">
-          <pv-message
-              v-for="notification in getNotificationsByType('success')"
-              :key="notification.id"
-              closable
-              severity="success"
-              icon="pi pi-check-circle"
-              @close="activeNotifications.success = false"
-          >
-            {{ notification.message }}
-          </pv-message>
-        </template>
-
-        <!-- Notificaciones informativas -->
-        <template v-if="activeNotifications.info">
-          <pv-message
-              v-for="notification in getNotificationsByType('info')"
-              :key="notification.id"
-              closable
-              severity="info"
-              icon="pi pi-info-circle"
-              @close="activeNotifications.info = false"
-          >
-            {{ notification.message }}
-          </pv-message>
+        <template v-for="type in Object.keys(activeNotifications)" :key="type">
+          <template v-if="activeNotifications[type]">
+            <pv-message
+                v-for="notification in getNotificationsByType(type)"
+                :key="notification.id"
+                closable
+                :severity="type"
+                :icon="t(`alertsSensors.icons.${type}`, '')"
+                @close="activeNotifications[type] = false"
+            >
+              {{ notification.message }}
+            </pv-message>
+          </template>
         </template>
       </div>
     </div>
@@ -144,17 +99,23 @@ onMounted(() => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
+.alerts-container {
+  padding: 1rem;
+}
+
 .test-controls {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
-.content h2{
+
+.content h2 {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 35px;
   font-weight: 700;
 }
+
 .test-button {
   min-width: 100px;
 }
@@ -179,32 +140,38 @@ onMounted(() => {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-:deep(.p-button.p-button-error){
+
+:deep(.p-button.p-button-error) {
   background-color: #CA4747 !important;
   color: white !important;
   border: none !important;
 }
-:deep(.p-button.p-button-success){
+
+:deep(.p-button.p-button-success) {
   background-color: #62B965 !important;
   color: white !important;
   border: none !important;
 }
-:deep(.p-button.p-button-warn){
+
+:deep(.p-button.p-button-warn) {
   background-color: #E4C072 !important;
   color: white !important;
   border: none !important;
 }
-:deep(.p-button.p-button-info){
+
+:deep(.p-button.p-button-info) {
   background-color: #2F82DB !important;
   color: white !important;
   border: none !important;
 }
-:deep(.p-button:hover){
+
+:deep(.p-button:hover) {
   opacity: 1;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-:deep(.p-button){
+
+:deep(.p-button) {
   border-radius: 18px !important;
   font-family: Arial, sans-serif !important;
   font-size: 14px !important;

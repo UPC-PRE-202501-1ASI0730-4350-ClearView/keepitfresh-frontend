@@ -1,18 +1,30 @@
 <template>
   <div class="app-container">
-    <Sidebar />
-    <main class="main-content">
+    <!-- Ocultar sidebar en rutas públicas -->
+    <Sidebar v-if="!hideSidebar" />
+
+    <main :class="['main-content', { 'with-sidebar': !hideSidebar }]">
       <router-view />
     </main>
+
   </div>
 </template>
 
 <script>
-import Sidebar from './public/components/sidebar-content.component.vue';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from './public/components/sidebar-content.component.vue'
+import LanguageSwitcher from './public/components/languageSwitcher.vue'
 
 export default {
-  components: {
-    Sidebar
+  components: { Sidebar, LanguageSwitcher },
+  setup() {
+    const route = useRoute()
+
+    const hiddenRoutes = ['/login', '/register', '/remember']
+    const hideSidebar = computed(() => hiddenRoutes.includes(route.path))
+
+    return { hideSidebar }
   }
 }
 </script>
@@ -30,9 +42,13 @@ export default {
   padding: 1rem;
 }
 
-@media (min-width: 768px) {
-  .main-content {
-    margin-left: 280px;
-  }
+.with-sidebar {
+  margin-left: 280px;
+}
+
+.language-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 </style>

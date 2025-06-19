@@ -1,42 +1,39 @@
 <template>
   <div class="page-container">
     <div class="profile-wrapper">
-      <h1 class="form-title">User Profile</h1>
+      <h1 class="form-title">{{ $t('profile.title') }}</h1>
+
       <!-- Imagen de perfil -->
       <div class="image-wrapper">
-        <img
-            :src="user.profilePicture"
-            alt="Profile"
-            class="profile-img"
-        />
+        <img :src="user.profilePicture" class="profile-img" />
       </div>
 
       <!-- Formulario -->
       <div class="form-content">
         <div class="text-left">
-          <label for="full-name">Full Name</label>
-          <pv-input-text id="full-name" v-model="user.fullName" placeholder="Full Name" class="w-full" />
+          <label for="full-name">{{ $t('profile.fullName') }}</label>
+          <pv-input-text id="full-name" v-model="user.fullName" :placeholder="$t('profile.fullNamePlaceholder')" class="w-full" />
         </div>
         <div class="text-left">
-          <label for="email">E-Mail</label>
-          <pv-input-text id="email" v-model="user.email" placeholder="Email" class="w-full" />
+          <label for="email">{{ $t('profile.email') }}</label>
+          <pv-input-text id="email" v-model="user.email" :placeholder="$t('profile.emailPlaceholder')" class="w-full" />
         </div>
         <div class="text-left">
-          <label for="restaurant">Restaurant</label>
-          <pv-input-text v-model="user.restaurant" placeholder="Restaurant" class="w-full" />
+          <label for="restaurant">{{ $t('profile.restaurant') }}</label>
+          <pv-input-text id="restaurant" v-model="user.restaurant" :placeholder="$t('profile.restaurantPlaceholder')" class="w-full" />
         </div>
 
         <pv-file-upload
             mode="basic"
             name="file"
-            choose-label="Upload Profile Picture"
+            :choose-label="$t('profile.uploadLabel')"
             @select="handleImageUpload"
             accept="image/*"
             :auto="true"
             class="w-full"
         />
 
-        <pv-button label="Save Changes" icon="pi pi-save" class="w-full" @click="saveChanges" />
+        <pv-button :label="$t('profile.save')" icon="pi pi-save" class="w-full" @click="saveChanges" />
       </div>
     </div>
   </div>
@@ -44,7 +41,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import axios from 'axios'
+
+const { t } = useI18n()
 
 const user = ref({
   id: 1,
@@ -72,8 +72,7 @@ const handleImageUpload = (event) => {
 
 const saveChanges = async () => {
   await axios.put(`http://localhost:3000/users/${user.value.id}`, user.value)
-  editing.value = false
-  alert('Profile updated successfully')
+  alert(t('profile.updated'))
 }
 </script>
 
@@ -85,12 +84,10 @@ const saveChanges = async () => {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #0e0e0e;
   padding: 2rem;
 }
 
 .profile-wrapper {
-  background-color: #1f1f1f;
   border-radius: 18px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   padding: 2rem;
@@ -114,19 +111,6 @@ const saveChanges = async () => {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-.profile-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0.5rem 0;
-}
-
-.profile-restaurant {
-  font-size: 16px;
-  color: #c0c0c0;
-  margin-bottom: 1.5rem;
-}
-
 .form-content {
   display: flex;
   flex-direction: column;
@@ -135,6 +119,7 @@ const saveChanges = async () => {
 
 :deep(.p-button) {
   background-color: #AFD6FF !important;
+  border-color:  #AFD6FF !important;
   border-radius: 18px !important;
   font-family: 'Arial', sans-serif !important;
   font-size: 14px !important;

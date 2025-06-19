@@ -1,28 +1,29 @@
 <template>
   <div class="sensor-table">
-    <h2>Products with Assigned Sensors</h2>
+    <h2>{{ t('sensorTable.title') }}</h2>
     <pv-data-table
         :value="products"
         dataKey="id"
         responsiveLayout="scroll"
     >
-      <pv-column header="Image" style="width: 120px">
+      <pv-column :header="t('sensorTable.image')" style="width: 120px">
         <template #body="{ data }">
           <img :src="data.image" alt="Product" class="product-image" />
         </template>
       </pv-column>
 
-      <pv-column field="name" header="Product" />
-      <pv-column field="category" header="Category" />
-      <pv-column field="sensor.type" header="Sensor Type" />
-      <pv-column field="sensor.status" header="Status" />
+      <pv-column field="name" :header="t('sensorTable.product')" />
+      <pv-column field="category" :header="t('sensorTable.category')" />
+      <pv-column field="sensor.type" :header="t('sensorTable.sensorType')" />
+      <pv-column field="sensor.status" :header="t('sensorTable.status')" />
 
-      <pv-column header="Actions" style="text-align: center; width: 140px">
+      <pv-column :header="t('sensorTable.actions')" style="text-align: center; width: 140px">
         <template #body="{ data }">
           <pv-button
               icon="pi pi-pencil"
               text
               rounded
+              :aria-label="t('sensorTable.edit')"
               @click="editSensor(data)"
           />
         </template>
@@ -40,8 +41,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { getProducts } from '/src/shared/services/inventory.service.js'
 import SensorEditDialog from './sensor-edit.component.vue'
+
+const { t } = useI18n()
 
 const products = ref([])
 const selectedProduct = ref(null)
@@ -79,7 +83,8 @@ h2 {
   margin-bottom: 1rem;
   text-align: center;
 }
-.sensor-table{
+
+.sensor-table {
   font-family: 'Arial', sans-serif;
 }
 </style>

@@ -1,34 +1,49 @@
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
-import {PrimeVue} from '@primevue/core';
-import 'primeflex/primeflex.css';
-import 'primeicons/primeicons.css';
-import Material from '@primeuix/themes/material';
-import { Form, FormField } from '@primevue/forms';
+import { PrimeVue } from '@primevue/core'
+import 'primeflex/primeflex.css'
+import 'primeicons/primeicons.css'
+import Material from '@primeuix/themes/material'
+import { Form, FormField } from '@primevue/forms'
+import { createPinia } from 'pinia'
 import {
-    Button,
-    Card,
-    Checkbox,
-    Column, ConfirmationService,
-    ConfirmDialog,
-    DataTable,
-    Dialog, DialogService, Drawer, Message,
-    FileUpload, FloatLabel, IconField, InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
-    Select,
-    SelectButton, Tag, Textarea, Toast, ToastService, Toolbar, DatePicker, TabView, TabPanel, Dropdown,
-} from "primevue";
-import i18n from "../i18n.js";
+    Button, Card, Checkbox, Column, ConfirmationService, ConfirmDialog, DataTable,
+    Dialog, DialogService, Drawer, Message, FileUpload, FloatLabel, IconField,
+    InputIcon, InputNumber, InputText, Menu, PanelMenu, Rating, Row,
+    Select, SelectButton, Tag, Textarea, Toast, ToastService, Toolbar,
+    DatePicker, TabView, TabPanel, Dropdown, Password
+} from "primevue"
 import router from "./router"
-import Chart from "primevue/chart";
+import Chart from "primevue/chart"
+
+import { createI18n } from 'vue-i18n'
+import es from './locales/es.json'
+import en from './locales/en.json'
+
+const defaultLocale = localStorage.getItem('language') || 'es'
+
+const i18n = createI18n({
+    legacy: false,
+    locale: defaultLocale,
+    fallbackLocale: 'en',
+    messages: {
+        es,
+        en
+    }
+})
+
+const pinia = createPinia()
 
 createApp(App)
     .use(router)
+    .use(pinia)
     .use(i18n)
-    .use(PrimeVue, {theme: {preset: Material}, ripple: true})
+    .use(PrimeVue, { theme: { preset: Material }, ripple: true })
     .use(ConfirmationService)
     .use(DialogService)
     .use(ToastService)
+    .component('pv-password', Password)
     .component('pv-chart', Chart)
     .component('pv-datatable', DataTable)
     .component('pv-tabview', TabView)
@@ -63,7 +78,9 @@ createApp(App)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
+    .component('pv-form', Form)
+    .component('pv-dropdown-group', Dropdown)
     .component('Message', Message)
     .component('FormField', FormField)
     .component('Form', Form)
-    .mount('#app');
+    .mount('#app')

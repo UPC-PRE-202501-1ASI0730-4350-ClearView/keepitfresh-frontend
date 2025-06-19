@@ -1,20 +1,26 @@
 <template>
   <pv-card>
     <template #title>
-      <h3>Monthly Consumption by Supply</h3>
+      <h3>{{ $t('statistics.monthly.title') }}</h3>
     </template>
     <template #content>
-      <pv-chart id="monthly-consumption-chart" type="bar" :data="chartData" :options="chartOptions" class="w-full h-28rem md:h-70rem"/>
+      <pv-chart
+          id="monthly-consumption-chart"
+          type="bar"
+          :data="chartData"
+          :options="chartOptions"
+          class="w-full h-28rem md:h-70rem"
+      />
       <div class="flex justify-end gap-2 mb-2">
         <pv-button
-            label="Export CSV"
+            :label="$t('statistics.monthly.exportCsv')"
             icon="pi pi-file-o"
             @click="exportMonthlyCSV"
             class="p-button-sm p-button-success"
             style="background-color: #62B965; border-color: #62B965"
         />
         <pv-button
-            label="Export PDF"
+            :label="$t('statistics.monthly.exportPdf')"
             icon="pi pi-file-pdf"
             @click="exportMonthlyPDF"
             class="p-button-sm p-button-success"
@@ -27,10 +33,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import {getMonthlyConsumption} from "../../../shared/services/consumption.service.js";
+import { useI18n } from 'vue-i18n'
 import Papa from 'papaparse'
-import {Button as PvButton} from "primevue";
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
+import { getMonthlyConsumption } from '../../../shared/services/consumption.service.js'
 
+const { t } = useI18n()
 const chartData = ref(null)
 const chartOptions = ref({})
 
@@ -71,8 +80,8 @@ onMounted(async () => {
 const exportMonthlyCSV = async () => {
   const data = await getMonthlyConsumption()
   const csv = Papa.unparse(data.datasets[0].data.map((val, i) => ({
-    Month: data.labels[i],
-    Consumption: val
+    [t('statistics.monthly.month')]: data.labels[i],
+    [t('statistics.monthly.consumption')]: val
   })))
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
@@ -84,9 +93,6 @@ const exportMonthlyCSV = async () => {
   document.body.removeChild(link)
 }
 
-import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas'
-
 const exportMonthlyPDF = async () => {
   const chartElement = document.getElementById('monthly-consumption-chart')
   if (!chartElement) return
@@ -97,7 +103,6 @@ const exportMonthlyPDF = async () => {
 
   const imgData = canvas.toDataURL('image/png')
   const pdf = new jsPDF('landscape', 'mm', 'a4')
-
   const imgProps = pdf.getImageProperties(imgData)
   const pdfWidth = pdf.internal.pageSize.getWidth()
   const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
@@ -105,7 +110,6 @@ const exportMonthlyPDF = async () => {
   pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight)
   pdf.save('monthly_consumption.pdf')
 }
-
 </script>
 
 <style scoped>
