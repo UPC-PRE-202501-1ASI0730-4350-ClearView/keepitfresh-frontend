@@ -1,4 +1,13 @@
 <template>
+  <router-link to="/profile-details">
+    <pv-button
+        icon="pi pi-user"
+        text
+        class="absolute top-0 right-0 m-3"
+        aria-label="Profile"
+        style="color: #AFD6FF"
+    />
+  </router-link>
   <div class="home-container">
     <div class="content-wrapper p-6">
       <h1 class="text-2xl font-bold mb-2 text-center">{{ $t('dashboard.greeting') }}</h1>
@@ -112,5 +121,11 @@ onMounted(async () => {
 
 p {
   font-family: 'Arial', sans-serif;
+}
+
+:deep(.p-button){
+  border-radius: 18px !important;
+  font-family: Arial, sans-serif !important;
+  font-size: 14px !important;
 }
 </style>

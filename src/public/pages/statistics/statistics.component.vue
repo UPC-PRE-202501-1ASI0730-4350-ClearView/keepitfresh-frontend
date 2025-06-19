@@ -17,13 +17,27 @@
       <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg col-span-2">
         <StockLevelChart />
       </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg w-full h-[30rem]">
+          <ExpirationStatistics />
+        </div>
+
+        <div class="bg-[#1e293b] rounded-xl p-5 shadow-lg w-full h-[30rem]">
+          <SensorStatusChart />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+
+
 import { useI18n } from 'vue-i18n'
+
 import StockLevelChart from './stock-level-statistics.component.vue'
+import ExpirationStatistics from './expiration-statistics.component.vue'
+import SensorStatusChart from './sensor-status-statistics.component.vue'
 
 const { t } = useI18n()
 </script>
