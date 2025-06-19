@@ -54,6 +54,18 @@ const routes = [
     {
         path: '/profile-details',
         component: () => import('../public/pages/profile/profile-details.component.vue'),
+    },
+    {
+        path:'/create-order',
+        component: () => import('../public/pages/orders/create-order.component.vue'),
+    },
+    {
+        path:'/order-list',
+        component: () => import('../public/pages/orders/order-list.component.vue'),
+    },
+    {
+        path:'/sidebar-order',
+        component: () => import('../public/components/sidebar-order.component.vue'),
     }
 ];
 
